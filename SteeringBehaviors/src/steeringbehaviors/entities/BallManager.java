@@ -1,4 +1,4 @@
-package steeringbehaviors;
+package steeringbehaviors.entities;
 
 
 

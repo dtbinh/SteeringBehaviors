@@ -28,7 +28,7 @@ Settings.getInstance().setResolution(new Dimension(DWIDTH, DHEIGHT));
         
         // Create our game with a world size equal to
         // the screen size
-        BallBounce g = new BallBounce(DWIDTH, DHEIGHT);
+        SteeringBehaviors g = new SteeringBehaviors(DWIDTH, DHEIGHT);
         
 
         try

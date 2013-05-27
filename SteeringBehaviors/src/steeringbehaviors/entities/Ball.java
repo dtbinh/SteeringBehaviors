@@ -1,4 +1,4 @@
-package steeringbehaviors;
+package steeringbehaviors.entities;
 
 
 
@@ -11,6 +11,8 @@ import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.util.LinkedList;
 import javax.swing.text.Position;
+import steeringbehaviors.CollissionDetector;
+import steeringbehaviors.WorldGraphics2D;
 
 /**
  * This class encapsulates a ball. It stores it's own velocity and

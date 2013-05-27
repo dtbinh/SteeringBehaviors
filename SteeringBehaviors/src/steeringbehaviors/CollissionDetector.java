@@ -2,6 +2,7 @@ package steeringbehaviors;
 
 
 
+import steeringbehaviors.entities.Ball;
 import edu.moravian.math.Vector2D;
 
 /**

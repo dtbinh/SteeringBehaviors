@@ -2,6 +2,8 @@ package steeringbehaviors;
 
 
 
+import steeringbehaviors.entities.Ball;
+import steeringbehaviors.entities.BallManager;
 import edu.moravian.math.Point2D;
 import edu.moravian.math.Vector2D;
 import java.awt.Color;
@@ -17,7 +19,7 @@ import javax.swing.JFrame;
  *
  * @author moore
  */
-public class BallBounce extends JFrame implements Game, KeyListener
+public class SteeringBehaviors extends JFrame implements Game, KeyListener
 {
 
     private int worldWidth;
@@ -30,7 +32,7 @@ public class BallBounce extends JFrame implements Game, KeyListener
     private Color background;
     private Settings set;
 
-    public BallBounce(int worldWidth, int worldHeight) throws FileNotFoundException, FileNotFoundException, IIOException
+    public SteeringBehaviors(int worldWidth, int worldHeight) throws FileNotFoundException, FileNotFoundException, IIOException
     {
         this.worldWidth = worldWidth;
         this.worldHeight = worldHeight;
@@ -94,16 +96,13 @@ public class BallBounce extends JFrame implements Game, KeyListener
     @Override
     public void draw(WorldGraphics2D g2d)
     {
-//        g2d.setColor(background);
-//        g2d.fillRect(0, 0, worldWidth, worldHeight);
-//
-//        g2d.setColor(Color.WHITE);
-//        g2d.drawString("" + lives, worldWidth - 10, worldHeight - 10);
-//
-//        for (Ball a : balls)
-//        {
-//            a.draw(g2d);
-//        }
+        g2d.setColor(background);
+        g2d.fillRect(0, 0, worldWidth, worldHeight);
+
+        for (Ball a : balls)
+        {
+            a.draw(g2d);
+        }
     }
 
     @Override

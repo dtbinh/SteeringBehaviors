@@ -197,7 +197,6 @@ class UserInterfaceController extends JFrame implements Runnable
                 
                 game.draw(foo);
 
-
                 // Write the FPS in the upper-left corner.  The coordinates
                 // designate the lower left of the text, and so anything
                 // written at (0,0) will end up being written above the
@@ -276,7 +275,7 @@ class UserInterfaceController extends JFrame implements Runnable
         public void keyPressed(KeyEvent e)
         {
             //Do nothing 
-            ((BallBounce) game).keyPressed(e);
+            ((SteeringBehaviors) game).keyPressed(e);
         }
 
         @Override
