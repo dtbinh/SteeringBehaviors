@@ -1,7 +1,5 @@
 package steeringbehaviors;
 
-
-
 /**
  * Timer class that handles time.  The external unit of this class is seconds.  
  * @author moore
@@ -9,8 +7,8 @@ package steeringbehaviors;
 public class Timer
 {
 
-    double beginTime;
-    double frameLength;
+    private double beginTime;
+    private static final double  fpsLen = Settings.getInstance().getDesiredFPS();
 
    /**
     * Creates a new Timer
@@ -34,7 +32,7 @@ public class Timer
      */
     public double getFPS()
     {
-        return 1000.0/Settings.getInstance().getDesiredFPS();
+        return 1000.0/fpsLen;
     }
 
    /**

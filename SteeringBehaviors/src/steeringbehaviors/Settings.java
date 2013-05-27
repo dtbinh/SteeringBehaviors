@@ -1,12 +1,10 @@
 package steeringbehaviors;
 
-
-
 import java.awt.Color;
 import java.awt.Dimension;
 
 /**
- *
+ * Settings class, get over it.  
  * @author moore
  */
 public class Settings
@@ -55,9 +53,7 @@ public class Settings
     {
         return worldsize.getHeight();
     }
-    
-    
-
+ 
     public String getBallFileName()
     {
         return "Balls.ini";

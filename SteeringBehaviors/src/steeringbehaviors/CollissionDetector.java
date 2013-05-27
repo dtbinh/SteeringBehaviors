@@ -1,9 +1,7 @@
 package steeringbehaviors;
 
-
-
-import steeringbehaviors.entities.Ball;
 import edu.moravian.math.Vector2D;
+import steeringbehaviors.entities.Entity;
 
 /**
  *
@@ -18,7 +16,7 @@ public class CollissionDetector
      * @param ballB Second ball
      * @return Are the balls colliding now or will they between frames?
      */
-    public static boolean twoSpheresColliding(Ball ballA, Ball ballB)
+    public static boolean twoSpheresColliding(Entity ballA, Entity ballB)
     {
         //double distance = Math.sqrt(Math.pow(ballA.getCenter().getX() - ballB.getCenter().getX(), 2)    + Math.pow(ballA.getCenter().getY() - ballB.getCenter().getY(), 2));
         double distanceSQ = Math.pow(ballA.getCenter().getX() - ballB.getCenter().getX(), 2)
@@ -79,6 +77,5 @@ public class CollissionDetector
         }
 
         return true;
-
     }
 }

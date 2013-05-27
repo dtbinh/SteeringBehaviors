@@ -1,25 +1,17 @@
 package steeringbehaviors.entities;
 
-
-
-import com.sun.xml.internal.bind.v2.util.CollisionCheckStack;
-
 import edu.moravian.math.Point2D;
 import edu.moravian.math.Vector2D;
 import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.Shape;
-import java.util.LinkedList;
-import javax.swing.text.Position;
 import steeringbehaviors.CollissionDetector;
 import steeringbehaviors.WorldGraphics2D;
 
 /**
- * This class encapsulates a ball. It stores it's own velocity and
+ * This is an entity that responds to other entities and its own behavior. 
  *
  * @author James Moore (moore.work@live.com)
  */
-public class Ball
+public class Entity
 {
 
     private Point2D location;
@@ -31,45 +23,20 @@ public class Ball
     public static final int PERFECTLY_INELASTIC = 0;
     private double elasticity;
 
-    /**
-     * This constructs a ball with the given parameters, WITH a specified
-     * elasticity. If one does not specify it here, it will be retrieved from
-     * settings.
-     *
-     * @param location The location (preferably within the world) for the upper
-     * left corner of the ball
-     * @param velocity The initial velocity of the ball
-     * @param mass The mass of the ball
-     * @param radius the radius in world units of the ball
-     * @param color the color of the ball. the ball will be solid
-     * @param elasticity_in the elasticity of the ball. 0 is perfectly elastic,
-     * 1 is perfectly inelastic. Values outside this are allowed but not
-     * recommended.
-     */
-    public Ball(Point2D location, Vector2D velocity, double mass, double radius, Color color, double elasticity_in)
-    {
-        this.location = location;
-        this.velocity = velocity;
-        this.mass = mass;
-        this.radius = radius;
-        this.color = color;
-        elasticity = elasticity_in;
-
-    }
 
     /**
-     * This constructs a ball with the given parameters, with a SYSTEM SPECIFIED
+     * This constructs an entity with the given parameters, with a SYSTEM SPECIFIED
      * elasticity. One can also specify it individually with an additional
      * parameter
      *
      * @param location The location (preferably within the world) for the upper
-     * left corner of the ball
-     * @param velocity The initial velocity of the ball
-     * @param mass The mass of the ball
-     * @param radius the radius in world units of the ball
-     * @param color the color of the ball. the ball will be solid
+     * left corner of the entity
+     * @param velocity The initial velocity of the entity
+     * @param mass The mass of the entity
+     * @param radius the radius in world units of the entity
+     * @param color the color of the entity. the ball will be solid
      */
-    public Ball(Point2D location, Vector2D velocity, double mass, double radius, Color color)
+    public Entity(Point2D location, Vector2D velocity, double mass, double radius, Color color)
     {
         this.location = location;
         this.velocity = velocity;
@@ -81,7 +48,7 @@ public class Ball
     }
 
     /**
-     * The balls handle their own drawing for now. Colors are safe
+     * The entities handle their own drawing for now. Colors are safe
      *
      * @param g2d
      */
@@ -94,7 +61,7 @@ public class Ball
         g2d.setColor(old);
     }
 
-    //TODO make sure the elasticity is in the file 
+
     /**
      * Updates the position of the ball within the world
      */
@@ -151,7 +118,7 @@ public class Ball
      * @param other
      * @return
      */
-    public void respondColission(Ball other)
+    public void respondColission(Entity other)
     {
 
         if (CollissionDetector.twoSpheresColliding(this, other))

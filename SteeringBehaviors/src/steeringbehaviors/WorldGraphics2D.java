@@ -1,7 +1,5 @@
 package steeringbehaviors;
 
-
-
 import edu.moravian.math.Point2D;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -17,13 +15,13 @@ public class WorldGraphics2D
 {
 
     Graphics2D g2d;
-    CoordinateTransloator trans;
+    CoordinateTranslator trans;
     Settings set = Settings.getInstance();
 
     public WorldGraphics2D(Graphics g)
     {
         this.g2d = (Graphics2D) g;
-        trans = new CoordinateTransloator(
+        trans = new CoordinateTranslator(
                 set.getResolution().width,
                 set.getResolution().height,
                 set.getWorldSize().width,

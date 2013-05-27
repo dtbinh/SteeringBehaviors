@@ -1,9 +1,5 @@
 package steeringbehaviors;
 
-
-
-import java.awt.Graphics2D;
-
 /**
  * This interface defines the required elements for any game that uses
  * the VideoController

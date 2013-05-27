@@ -1,4 +1,3 @@
-
 package steeringbehaviors;
 
 import java.awt.Dimension;
@@ -10,8 +9,10 @@ import javax.imageio.IIOException;
  *
  * @author James Moore (moore.work@live.com)
  */
-public class Main {
-  //Default resolutions 
+public class Main
+  {
+    //Default resolutions 
+
     private static int DWIDTH = 800;
     private static int DHEIGHT = 600;
     private static int DBITDEPTH = 32;
@@ -21,15 +22,15 @@ public class Main {
 
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension resolution = tk.getScreenSize();
-        
+
         DWIDTH = resolution.width;
         DHEIGHT = resolution.height;
-Settings.getInstance().setResolution(new Dimension(DWIDTH, DHEIGHT));
-        
+        Settings.getInstance().setResolution(new Dimension(DWIDTH, DHEIGHT));
+
         // Create our game with a world size equal to
         // the screen size
         SteeringBehaviors g = new SteeringBehaviors(DWIDTH, DHEIGHT);
-        
+
 
         try
           {
@@ -46,4 +47,4 @@ Settings.getInstance().setResolution(new Dimension(DWIDTH, DHEIGHT));
                     + "x" + DBITDEPTH + " in full screen mode");
           }
       }
-}
+  }

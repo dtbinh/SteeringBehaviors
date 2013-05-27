@@ -1,11 +1,8 @@
 package steeringbehaviors;
 
-
-
 import java.awt.Color;
 import java.awt.DisplayMode;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.event.KeyEvent;
@@ -201,6 +198,7 @@ class UserInterfaceController extends JFrame implements Runnable
                 // designate the lower left of the text, and so anything
                 // written at (0,0) will end up being written above the
                 // viewable region.
+                g.setColor(Color.white);
                 g.drawString("" + 1.0 / (diff / 1000.0), 0, 10);
 
                 // Free up any resources being used.
@@ -224,22 +222,6 @@ class UserInterfaceController extends JFrame implements Runnable
                 // If the OS forces the thread to wake up before the time,
                 // then an exception will be thrown.  We can simply ignore
                 // this exception and continue generating frames.
-
-//                double sleeptime = time.getFPS() - time.getDelta();
-//
-//                if (sleeptime <= 0)
-//                {
-//                    sleeptime = 5;
-//                }
-//
-//                try
-//                {
-//                    Thread.sleep((long) sleeptime);
-//                }
-//                catch (InterruptedException e)
-//                {
-//                }
-
             }
         }
 // A "finally" clause will always execute even if an unhandled
@@ -262,9 +244,7 @@ class UserInterfaceController extends JFrame implements Runnable
     private class inputHandler implements  KeyListener
     {
 
-    
-
-        @Override
+            @Override
         public void keyTyped(KeyEvent e)
         {
             //Do nothing 

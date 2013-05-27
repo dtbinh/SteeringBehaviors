@@ -1,37 +1,31 @@
 package steeringbehaviors;
 
-
 import edu.moravian.math.Point2D;
-
-
 
 /**
  * This class translates between screen coordinates and world coordinates 
  * @author James Moore (moore.work@live.com)
  */
-public class CoordinateTransloator
+public class CoordinateTranslator
   {
-
     private int screenWidth;
     private int screenHeight;
     private double worldWidth;
     private double worldHeight;
 
     /**
-     * 
      * @param screenWidth Screen width in pixels
      * @param screenHeight Screen Height in pixels
      * @param worldWidth world width in w/e
      * @param worldHeight  world height in w/e
      */
-    public CoordinateTransloator(int screenWidth, int screenHeight, double worldWidth, double worldHeight)
+    public CoordinateTranslator(int screenWidth, int screenHeight, double worldWidth, double worldHeight)
       {
         this.screenWidth = screenWidth ;
         this.screenHeight = screenHeight ;
         this.worldWidth = worldWidth;
         this.worldHeight = worldHeight;
       }
-
    
     public Point2D screenToWorld(Point2D screenPoint)
       {
