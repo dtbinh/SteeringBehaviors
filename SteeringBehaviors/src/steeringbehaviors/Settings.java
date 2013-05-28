@@ -11,7 +11,7 @@ public class Settings
 {
 
     public final static Settings instance = new Settings();
-    private final static Dimension worldsize = new Dimension(1920,1080);
+    private final static Dimension worldsize = new Dimension(2000,1000);
     private Dimension res;
 
     private Settings()

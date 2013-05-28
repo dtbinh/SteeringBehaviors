@@ -99,6 +99,8 @@ public class SteeringBehaviors extends JFrame implements Game, KeyListener
         {
             a.draw(g2d);
         }
+       g2d.drawTrangle(new Point2D(100,100), new Vector2D(1,0));
+        System.out.println(new Vector2D(1,0).angle());
     }
 
     @Override

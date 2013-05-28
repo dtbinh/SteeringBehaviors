@@ -39,7 +39,7 @@ public class EntityManager
           {
             double  maxWidth =  Settings.getInstance().getWorldWidth();
             double maxHeght =  Settings.getInstance().getWorldHeight();
-            instance.add(new Entity(new Point2D(rand.nextInt((int)maxWidth), rand.nextInt((int)maxHeght)), new Vector2D(rand.nextInt(30) - 15, rand.nextInt(30) - 15), rand.nextInt(100), rand.nextInt(100), Color.blue));
+            instance.add(new Entity(new Point2D(rand.nextInt((int)maxWidth), rand.nextInt((int)maxHeght)), new Vector2D(rand.nextInt(30) - 15, rand.nextInt(30) - 15), rand.nextInt(100), rand.nextInt(100) + 50, Color.blue));
           }
 
 

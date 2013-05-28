@@ -57,7 +57,8 @@ public class Entity
         Color old = g2d.getColor();
         g2d.setColor(color);
 
-        g2d.fillOval((int) location.getX(), (int) location.getY(), (int) radius * 2, (int) radius * 2);
+       g2d.fillOval((int) location.getX(), (int) location.getY(), (int) radius * 2, (int) radius * 2);
+       
         g2d.setColor(old);
     }
 
@@ -68,7 +69,6 @@ public class Entity
     public void update()
     {
         this.location.set(this.location.scalePlus(1, velocity));
-
     }
 
     public Vector2D getVelocity()
@@ -120,7 +120,6 @@ public class Entity
      */
     public void respondColission(Entity other)
     {
-
         if (CollissionDetector.twoSpheresColliding(this, other))
         {
 
@@ -164,7 +163,7 @@ public class Entity
             //Modify the velocities 
             this.setVelocity(this.getVelocity().plus(collissionNormal.times(impulse_factor / this.getMass())));
             other.setVelocity(other.getVelocity().minus(collissionNormal.times(impulse_factor / other.getMass())));
-
         }
     }
+
 }
