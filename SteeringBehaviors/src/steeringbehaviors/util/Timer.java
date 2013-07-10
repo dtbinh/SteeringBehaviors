@@ -1,4 +1,6 @@
-package steeringbehaviors;
+package steeringbehaviors.util;
+
+import steeringbehaviors.Settings;
 
 /**
  * Timer class that handles time.  The external unit of this class is seconds.  

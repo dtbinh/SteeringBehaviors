@@ -1,5 +1,6 @@
 package steeringbehaviors;
 
+import steeringbehaviors.util.CoordinateTranslator;
 import edu.moravian.math.Point2D;
 import edu.moravian.math.Vector2D;
 import java.awt.Color;
@@ -119,4 +120,18 @@ public class WorldGraphics2D
         g2d.rotate(-1 * angle);
         
       }
+
+    public void drawArrow(Point2D location, Vector2D velocity, int i)
+    {
+        Color col = g2d.getColor();
+        velocity = velocity.getNormalized();
+        g2d.setColor(Color.white);
+        //Point2D realPoint = trans.worldtoScreen(location);
+        Point2D realPoint = location;
+        g2d.drawLine((int)realPoint.getX(), (int)realPoint.getY(), (int)realPoint.scalePlus(i, velocity).getX(),(int)realPoint.scalePlus(i,velocity).getY());
+        g2d.setColor(col);
+        
+    }
+    
+
   }

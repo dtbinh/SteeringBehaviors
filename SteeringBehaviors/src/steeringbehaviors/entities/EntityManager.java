@@ -9,6 +9,7 @@ import java.util.Random;
 import java.util.Set;
 import javax.imageio.IIOException;
 import steeringbehaviors.Settings;
+import steeringbehaviors.SingleEntity;
 
 /**
  *
@@ -17,30 +18,30 @@ import steeringbehaviors.Settings;
 public class EntityManager
   {
 
-    private static LinkedList<Entity> instance = null;
+    private static LinkedList<SingleEntity> instance = null;
 
     private EntityManager()
       {
       }
 
-    public static LinkedList<Entity> getInstance() throws FileNotFoundException, IIOException
+    public static LinkedList<SingleEntity> getInstance() throws FileNotFoundException, IIOException
       {
-        instance = new LinkedList<>();
-        instance.add(new Entity(Point2D.zero, Vector2D.zero, 100, 100, Color.blue));
-        instance.add(new Entity(new Point2D(100, 100), new Vector2D(10, 10), 100, 100, Color.blue));
-        instance.add(new Entity(new Point2D(400, 200), new Vector2D(-10, 10), 100, 100, Color.blue));
-        instance.add(new Entity(new Point2D(400, 100), new Vector2D(-10, 0), 100, 100, Color.blue));
+        instance = new LinkedList<SingleEntity>();
+    //    instance.add(new Ball(Point2D.zero, Vector2D.zero, 100, 100, Color.blue));
+      //  instance.add(new Ball(new Point2D(100, 100), new Vector2D(10, 10), 100, 100, Color.blue));
+        //instance.add(new Ball(new Point2D(400, 200), new Vector2D(-10, 10), 100, 100, Color.blue));
+        instance.add(new Ball(new Point2D(400, 100), new Vector2D(-1, 0), 100, 100, Color.blue));
 
         Random rand = new Random();
 
 
 
-        for (int i = 0; i < 10; i++)
-          {
-            double  maxWidth =  Settings.getInstance().getWorldWidth();
-            double maxHeght =  Settings.getInstance().getWorldHeight();
-            instance.add(new Entity(new Point2D(rand.nextInt((int)maxWidth), rand.nextInt((int)maxHeght)), new Vector2D(rand.nextInt(30) - 15, rand.nextInt(30) - 15), rand.nextInt(100), rand.nextInt(100) + 50, Color.blue));
-          }
+//        for (int i = 0; i < 10; i++)
+//          {
+//            double  maxWidth =  Settings.getInstance().getWorldWidth();
+//            double maxHeght =  Settings.getInstance().getWorldHeight();
+//            instance.add(new Ball(new Point2D(rand.nextInt((int)maxWidth), rand.nextInt((int)maxHeght)), new Vector2D(rand.nextInt(30) - 15, rand.nextInt(30) - 15), rand.nextInt(100), rand.nextInt(100) + 50, Color.blue));
+//          }
 
 
         /*

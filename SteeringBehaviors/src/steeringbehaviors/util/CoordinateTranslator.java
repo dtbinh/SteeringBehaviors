@@ -1,4 +1,4 @@
-package steeringbehaviors;
+package steeringbehaviors.util;
 
 import edu.moravian.math.Point2D;
 

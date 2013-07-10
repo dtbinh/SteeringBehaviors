@@ -12,7 +12,7 @@ import steeringbehaviors.WorldGraphics2D;
  *
  * @author James Moore (moore.work@live.com)
  */
-public class Entity implements SingleEntity
+public class Ball implements SingleEntity
 {
 
     private Point2D location;
@@ -36,7 +36,7 @@ public class Entity implements SingleEntity
      * @param radius the radius in world units of the entity
      * @param color the color of the entity. the ball will be solid
      */
-    public Entity(Point2D location, Vector2D velocity, double mass, double radius, Color color)
+    public Ball(Point2D location, Vector2D velocity, double mass, double radius, Color color)
     {
         this.location = location;
         this.velocity = velocity;
@@ -57,10 +57,10 @@ public class Entity implements SingleEntity
     {
         Color old = g2d.getColor();
         g2d.setColor(color);
+        
+        g2d.drawArrow(this.getCenter(), velocity, 1000);
 
         g2d.fillOval((int) location.getX(), (int) location.getY(), (int) radius * 2, (int) radius * 2);
-        
-        g2d.drawArrow(location, velocity, 1);
 
         g2d.setColor(old);
     }
@@ -114,5 +114,57 @@ public class Entity implements SingleEntity
         return new Point2D(location.getX() + (radius), location.getY() + (radius));
     }
 
+    /**
+     * Responds to a collision between this ball and the input ball; BOTH ARE
+     * MODIFIED.
+     *
+     * @param other
+     * @return
+     */
+    public void respondColission(Ball other)
+    {
+        if (CollissionDetector.twoSpheresColliding(this, other))
+        {
 
+            Vector2D collissionNormal = this.getCenter().minus(other.getCenter());
+
+            //The distance between the two centers
+            double distance = collissionNormal.magnitude();
+
+            //Once we have the distance, we want to normalize the vector so it is true to its name
+            collissionNormal.normalize();
+            double radiusSum = this.getRadius() + other.getRadius();
+
+            /*
+             * On a colission event the bodies will not be exactly touching
+             * this is the distance between an exact colission of the two 
+             * bodies
+             */
+            double penetration = radiusSum - distance;
+
+            //"Push" the balls out so they touch 
+            this.setLocation(this.getLocation().plus(collissionNormal.times(penetration * .5)));
+            other.setLocation(other.getLocation().plus(collissionNormal.times(penetration * -.5)));
+
+            //Get the relative velocity 
+            Vector2D new_Velocity = this.getVelocity().minus(other.getVelocity());
+
+
+            double vDotN = new_Velocity.dot(collissionNormal);
+            //Determine the direction of the new  velocity and the old velocity 
+
+            //Compute the impulse factor
+            double num = vDotN * -(1 + elasticity);
+
+            double denominator = (collissionNormal.dot(collissionNormal));
+
+            denominator *= (1 / this.getMass() + 1 / other.getMass());
+
+            double impulse_factor = num / denominator;
+
+            //Modify the velocities 
+            this.setVelocity(this.getVelocity().plus(collissionNormal.times(impulse_factor / this.getMass())));
+            other.setVelocity(other.getVelocity().minus(collissionNormal.times(impulse_factor / other.getMass())));
+        }
+    }
 }

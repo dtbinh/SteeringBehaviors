@@ -9,8 +9,9 @@ import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import javax.imageio.IIOException;
 import javax.swing.JFrame;
-import steeringbehaviors.entities.Entity;
+import steeringbehaviors.entities.Ball;
 import steeringbehaviors.entities.EntityManager;
+import steeringbehaviors.entities.TestBars;
 
 /**
  *
@@ -23,7 +24,7 @@ public class SteeringBehaviors extends JFrame implements Game, KeyListener
     private int worldHeight;
     private int worldWidthCenter;
     private int worldHeightCenter;
-    private LinkedList<Entity> balls;
+    private LinkedList<SingleEntity> firstSet;
     private boolean endgame_met;
     private int lives;
     private Color background;
@@ -38,7 +39,10 @@ public class SteeringBehaviors extends JFrame implements Game, KeyListener
         set = Settings.getInstance();
         background = set.getBackgroundColor();
 
-        balls = EntityManager.getInstance();
+        //balls =  EntityManager.getInstance();
+//        firstSet = new LinkedList<SingleEntity>();
+  //      firstSet.add(new TestBars());
+        firstSet = EntityManager.getInstance();
 
         set = Settings.getInstance();
 
@@ -48,40 +52,40 @@ public class SteeringBehaviors extends JFrame implements Game, KeyListener
     @Override
     public void update()
     {
-        for (Entity b : balls)
+        for (SingleEntity b : firstSet)
         {
             b.update();
 
-            for (Entity a : balls)
+            //for (Ball a : balls)
             {
-                if (a != b)
-                {
-                    a.respondColission(b);
-                }
-            }
-//TODO ball bouncing
-            if (isOutOfBoundsX(b))
-            {
-                if (b.getLocation().getX() > worldWidthCenter && b.getVelocity().getX() > 0)
-                {
-                    b.setVelocity(new Vector2D(b.getVelocity().getX() * -1, b.getVelocity().getY()));
-                }
-                else if (b.getLocation().getX() < worldWidthCenter && b.getVelocity().getX() < 0)
-                {
-                    b.setVelocity(new Vector2D(b.getVelocity().getX() * -1, b.getVelocity().getY()));
-                }
-
-            }
-            if (isOutofBoundsY(b))
-            {
-                if (b.getLocation().getY() > worldHeightCenter && b.getVelocity().getY() > 0)
-                {
-                    b.setVelocity(new Vector2D(b.getVelocity().getX(), b.getVelocity().getY() * -1));
-                }
-                else if (b.getLocation().getY() < worldHeightCenter && b.getVelocity().getY() < 0)
-                {
-                    b.setVelocity(new Vector2D(b.getVelocity().getX(), b.getVelocity().getY() * -1));
-                }
+//                if (a != b)
+//                {
+//                    a.respondColission(b);
+//                }
+//            }
+//
+//            if (isOutOfBoundsX(b))
+//            {
+//                if (b.getLocation().getX() > worldWidthCenter && b.getVelocity().getX() > 0)
+//                {
+//                    b.setVelocity(new Vector2D(b.getVelocity().getX() * -1, b.getVelocity().getY()));
+//                }
+//                else if (b.getLocation().getX() < worldWidthCenter && b.getVelocity().getX() < 0)
+//                {
+//                    b.setVelocity(new Vector2D(b.getVelocity().getX() * -1, b.getVelocity().getY()));
+//                }
+//
+//            }
+//            if (isOutofBoundsY(b))
+//            {
+//                if (b.getLocation().getY() > worldHeightCenter && b.getVelocity().getY() > 0)
+//                {
+//                    b.setVelocity(new Vector2D(b.getVelocity().getX(), b.getVelocity().getY() * -1));
+//                }
+//                else if (b.getLocation().getY() < worldHeightCenter && b.getVelocity().getY() < 0)
+//                {
+//                    b.setVelocity(new Vector2D(b.getVelocity().getX(), b.getVelocity().getY() * -1));
+//                }
             }
 
         }
@@ -95,12 +99,12 @@ public class SteeringBehaviors extends JFrame implements Game, KeyListener
         g2d.setColor(background);
         g2d.fillRect(0, 0, worldWidth, worldHeight);
 
-        for (Entity a : balls)
+        for (SingleEntity a : firstSet)
         {
             a.draw(g2d);
         }
-       g2d.drawTrangle(new Point2D(100,100), new Vector2D(1,0));
-        System.out.println(new Vector2D(1,0).angle());
+       //g2d.drawTrangle(new Point2D(100,100), new Vector2D(1,0));
+      //  System.out.println(new Vector2D(1,0).angle());
     }
 
     @Override
@@ -133,7 +137,7 @@ public class SteeringBehaviors extends JFrame implements Game, KeyListener
      * @param b
      * @return 
      */
-    private boolean isOutOfBoundsX(Entity b)
+    private boolean isOutOfBoundsX(Ball b)
     {
         //TODO calculating out of bounds with velocity, not bounds 
         Vector2D dir;
@@ -156,7 +160,7 @@ public class SteeringBehaviors extends JFrame implements Game, KeyListener
      * @param b
      * @return 
      */
-    private boolean isOutofBoundsY(Entity b)
+    private boolean isOutofBoundsY(Ball b)
     {
         Vector2D dir;
         if (b.getLocation().getY() > worldHeightCenter)
