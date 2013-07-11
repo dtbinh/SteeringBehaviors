@@ -4,7 +4,7 @@ import steeringbehaviors.SingleEntity;
 import edu.moravian.math.Point2D;
 import edu.moravian.math.Vector2D;
 import java.awt.Color;
-import steeringbehaviors.util.CollissionDetector;
+import Utility.CollissionDetector;
 import steeringbehaviors.WorldGraphics2D;
 
 /**
@@ -60,7 +60,8 @@ public class Ball implements SingleEntity
         
         g2d.drawArrow(this.getCenter(), velocity, 1000);
 
-        g2d.fillOval((int) location.getX(), (int) location.getY(), (int) radius * 2, (int) radius * 2);
+      //  g2d.fillOval((int) location.getX(), (int) location.getY(), (int) radius * 2, (int) radius * 2);
+        g2d.drawPixel(location, Color.yellow);
 
         g2d.setColor(old);
     }

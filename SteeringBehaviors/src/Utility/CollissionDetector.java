@@ -1,4 +1,4 @@
-package steeringbehaviors.util;
+package Utility;
 
 import edu.moravian.math.Vector2D;
 import steeringbehaviors.entities.Ball;

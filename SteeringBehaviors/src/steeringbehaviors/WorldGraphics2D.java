@@ -1,6 +1,6 @@
 package steeringbehaviors;
 
-import steeringbehaviors.util.CoordinateTranslator;
+import Utility.CoordinateTranslator;
 import edu.moravian.math.Point2D;
 import edu.moravian.math.Vector2D;
 import java.awt.Color;
@@ -67,10 +67,11 @@ public class WorldGraphics2D
       }
 
     /**
-     *  Draw an image.
+     * Draw an image.
+     *
      * @param apearance
      * @param location
-     * @param object  This can be null
+     * @param object This can be null
      */
     public void drawImage(BufferedImage apearance, Point2D location, Object object)
       {
@@ -104,7 +105,7 @@ public class WorldGraphics2D
       {
         double angle = direction.angle();
         g2d.rotate(angle);
-        
+
         BufferedImage img;
 
         try
@@ -114,24 +115,29 @@ public class WorldGraphics2D
           }
         catch (IOException e)
           {
-              System.out.println("Cannot find a triangle");
+            System.out.println("Cannot find a triangle");
           }
-        
+
         g2d.rotate(-1 * angle);
-        
+
       }
 
     public void drawArrow(Point2D location, Vector2D velocity, int i)
-    {
+      {
         Color col = g2d.getColor();
         velocity = velocity.getNormalized();
         g2d.setColor(Color.white);
         //Point2D realPoint = trans.worldtoScreen(location);
         Point2D realPoint = location;
-        g2d.drawLine((int)realPoint.getX(), (int)realPoint.getY(), (int)realPoint.scalePlus(i, velocity).getX(),(int)realPoint.scalePlus(i,velocity).getY());
+        g2d.drawLine((int) realPoint.getX(), (int) realPoint.getY(), (int) realPoint.scalePlus(i, velocity).getX(), (int) realPoint.scalePlus(i, velocity).getY());
         g2d.setColor(col);
-        
-    }
-    
 
+      }
+
+    public void drawPixel(Point2D location, Color col)
+      {
+        Color old = g2d.getColor();
+        g2d.setColor(col);
+        g2d.drawLine((int) location.getX(), (int) location.getY(), (int) location.getX(), (int) location.getY());
+      }
   }

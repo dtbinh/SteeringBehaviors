@@ -1,6 +1,6 @@
 package steeringbehaviors;
 
-import steeringbehaviors.util.Timer;
+import Utility.Timer;
 import java.awt.Color;
 import java.awt.DisplayMode;
 import java.awt.Graphics;

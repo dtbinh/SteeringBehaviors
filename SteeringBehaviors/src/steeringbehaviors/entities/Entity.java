@@ -4,7 +4,7 @@ import steeringbehaviors.SingleEntity;
 import edu.moravian.math.Point2D;
 import edu.moravian.math.Vector2D;
 import java.awt.Color;
-import steeringbehaviors.util.CollissionDetector;
+import Utility.CollissionDetector;
 import steeringbehaviors.WorldGraphics2D;
 
 /**

@@ -1,4 +1,4 @@
-package steeringbehaviors.util;
+package Utility;
 
 import steeringbehaviors.Settings;
 

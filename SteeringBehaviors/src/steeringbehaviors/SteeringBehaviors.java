@@ -39,9 +39,6 @@ public class SteeringBehaviors extends JFrame implements Game, KeyListener
         set = Settings.getInstance();
         background = set.getBackgroundColor();
 
-        //balls =  EntityManager.getInstance();
-//        firstSet = new LinkedList<SingleEntity>();
-  //      firstSet.add(new TestBars());
         firstSet = EntityManager.getInstance();
 
         set = Settings.getInstance();
