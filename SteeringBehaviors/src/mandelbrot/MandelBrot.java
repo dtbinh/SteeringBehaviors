@@ -82,7 +82,8 @@ public class MandelBrot implements SingleEntity
 //                {
 //                    buff.setRGB(x, y, Color.black.getRGB());
 //                }
-               buff.setRGB(x, y,  ColorTool.getRGBColor(iterations + 1 ,iterations,iterations));
+               buff.setRGB(x, y,  ColorTool.getRGBColor(iterations % 222 ,iterations*2,iterations));
+                
 
             }
         }
