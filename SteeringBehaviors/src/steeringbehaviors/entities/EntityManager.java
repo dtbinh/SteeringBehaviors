@@ -9,7 +9,7 @@ import java.util.Random;
 import java.util.Set;
 import javax.imageio.IIOException;
 import steeringbehaviors.Settings;
-import steeringbehaviors.SingleEntity;
+import steeringbehaviors.RunnableSim;
 
 /**
  *
@@ -18,15 +18,15 @@ import steeringbehaviors.SingleEntity;
 public class EntityManager
   {
 
-    private static LinkedList<SingleEntity> instance = null;
+    private static LinkedList<RunnableSim> instance = null;
 
     private EntityManager()
       {
       }
 
-    public static LinkedList<SingleEntity> getInstance() throws FileNotFoundException, IIOException
+    public static LinkedList<RunnableSim> getInstance() throws FileNotFoundException, IIOException
       {
-        instance = new LinkedList<SingleEntity>();
+        instance = new LinkedList<RunnableSim>();
     //    instance.add(new Ball(Point2D.zero, Vector2D.zero, 100, 100, Color.blue));
       //  instance.add(new Ball(new Point2D(100, 100), new Vector2D(10, 10), 100, 100, Color.blue));
         //instance.add(new Ball(new Point2D(400, 200), new Vector2D(-10, 10), 100, 100, Color.blue));

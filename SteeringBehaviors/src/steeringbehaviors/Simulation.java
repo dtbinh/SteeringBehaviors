@@ -6,10 +6,10 @@ package steeringbehaviors;
  * 
  * @author mebjc01
  */
-public interface Game
+public interface Simulation
 {
     /**
-     * Update the Game state by one frame
+     * Update the Simulation state by one frame
      */
     void update();
 

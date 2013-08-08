@@ -4,7 +4,7 @@ package mandelbrot;
  *
  * @author James Moore (moore.work@live.com)
  */
-public class Foo
+public class DistTest
 {
     //Scaling example for two ranges of numbers 
 

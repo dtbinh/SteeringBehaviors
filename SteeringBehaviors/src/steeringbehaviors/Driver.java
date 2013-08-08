@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import javax.imageio.IIOException;
 import javax.swing.JFrame;
+import mandelbrot.MandelBrot;
 import steeringbehaviors.entities.Ball;
 import steeringbehaviors.entities.EntityManager;
 import steeringbehaviors.entities.TestBars;
@@ -17,20 +18,20 @@ import steeringbehaviors.entities.TestBars;
  *
  * @author moore
  */
-public class SteeringBehaviors extends JFrame implements Game, KeyListener
+public class Driver extends JFrame implements Simulation, KeyListener
 {
-
+    
     private int worldWidth;
     private int worldHeight;
     private int worldWidthCenter;
     private int worldHeightCenter;
-    private LinkedList<SingleEntity> firstSet;
+    private LinkedList<RunnableSim> firstSet;
     private boolean endgame_met;
     private int lives;
     private Color background;
     private Settings set;
-
-    public SteeringBehaviors(int worldWidth, int worldHeight) throws FileNotFoundException, FileNotFoundException, IIOException
+    
+    public Driver(int worldWidth, int worldHeight) throws FileNotFoundException, FileNotFoundException, IIOException
     {
         this.worldWidth = worldWidth;
         this.worldHeight = worldHeight;
@@ -38,21 +39,20 @@ public class SteeringBehaviors extends JFrame implements Game, KeyListener
         worldHeightCenter = worldHeight / 2;
         set = Settings.getInstance();
         background = set.getBackgroundColor();
-
-        firstSet = EntityManager.getInstance();
-
+        
+        firstSet = new LinkedList<RunnableSim>();//EntityManager.getInstance();
+        firstSet.add(new MandelBrot());
         set = Settings.getInstance();
-
+        
         endgame_met = false;
     }
-
+    
     @Override
     public void update()
     {
-        for (SingleEntity b : firstSet)
+        for (RunnableSim b : firstSet)
         {
             b.update();
-
             //for (Ball a : balls)
             {
 //                if (a != b)
@@ -84,37 +84,37 @@ public class SteeringBehaviors extends JFrame implements Game, KeyListener
 //                    b.setVelocity(new Vector2D(b.getVelocity().getX(), b.getVelocity().getY() * -1));
 //                }
             }
-
+            
         }
-
-
+        
+        
     }
-
+    
     @Override
     public void draw(WorldGraphics2D g2d)
     {
         g2d.setColor(background);
         g2d.fillRect(0, 0, worldWidth, worldHeight);
-
-        for (SingleEntity a : firstSet)
+        
+        for (RunnableSim a : firstSet)
         {
             a.draw(g2d);
         }
-       //g2d.drawTrangle(new Point2D(100,100), new Vector2D(1,0));
-      //  System.out.println(new Vector2D(1,0).angle());
+        //g2d.drawTrangle(new Point2D(100,100), new Vector2D(1,0));
+        //  System.out.println(new Vector2D(1,0).angle());
     }
-
+    
     @Override
     public boolean done()
     {
         return endgame_met;
     }
-
+    
     public void keyTyped(KeyEvent ke)
     {
         //throw new UnsupportedOperationException("Not supported yet.");
     }
-
+    
     public void keyPressed(KeyEvent ke)
     {
         //throw new UnsupportedOperationException("Not supported yet.");
@@ -123,7 +123,7 @@ public class SteeringBehaviors extends JFrame implements Game, KeyListener
             endgame_met = true;
         }
     }
-
+    
     public void keyReleased(KeyEvent ke)
     {
         //throw new UnsupportedOperationException("Not supported yet.");
@@ -131,8 +131,9 @@ public class SteeringBehaviors extends JFrame implements Game, KeyListener
 
     /**
      * Determines if a ball has fallen outside the sides
+     *
      * @param b
-     * @return 
+     * @return
      */
     private boolean isOutOfBoundsX(Ball b)
     {
@@ -146,16 +147,17 @@ public class SteeringBehaviors extends JFrame implements Game, KeyListener
         {
             dir = new Vector2D(-1, 0);
         }
-
+        
         Point2D newLoc = b.getCenter().scalePlus(b.getRadius(), dir);
         return (newLoc.getX() < 0 || newLoc.getX() > worldWidth);
-
+        
     }
 
     /**
-     * Determines if a ball has fallen outside the veritcal bounds 
+     * Determines if a ball has fallen outside the veritcal bounds
+     *
      * @param b
-     * @return 
+     * @return
      */
     private boolean isOutofBoundsY(Ball b)
     {
@@ -168,9 +170,9 @@ public class SteeringBehaviors extends JFrame implements Game, KeyListener
         {
             dir = new Vector2D(0, -1);
         }
-
+        
         Point2D newLoc = b.getCenter().scalePlus(b.getRadius(), dir);
-
+        
         return (newLoc.getY() < 0 || newLoc.getY() > worldHeight);
     }
 }

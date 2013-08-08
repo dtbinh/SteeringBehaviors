@@ -29,7 +29,7 @@ public class Main
 
         // Create our game with a world size equal to
         // the screen size
-        SteeringBehaviors g = new SteeringBehaviors(DWIDTH, DHEIGHT);
+        Driver g = new Driver(DWIDTH, DHEIGHT);
 
 
         try

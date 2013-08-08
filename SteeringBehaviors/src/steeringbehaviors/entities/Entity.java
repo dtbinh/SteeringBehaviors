@@ -1,6 +1,6 @@
 package steeringbehaviors.entities;
 
-import steeringbehaviors.SingleEntity;
+import steeringbehaviors.RunnableSim;
 import edu.moravian.math.Point2D;
 import edu.moravian.math.Vector2D;
 import java.awt.Color;
@@ -12,7 +12,7 @@ import steeringbehaviors.WorldGraphics2D;
  *
  * @author James Moore (moore.work@live.com)
  */
-public class Entity implements SingleEntity
+public class Entity implements RunnableSim
 {
 
     private Point2D location;

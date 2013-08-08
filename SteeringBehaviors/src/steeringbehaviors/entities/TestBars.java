@@ -2,14 +2,14 @@
 package steeringbehaviors.entities;
 
 import java.awt.Color;
-import steeringbehaviors.SingleEntity;
+import steeringbehaviors.RunnableSim;
 import steeringbehaviors.WorldGraphics2D;
 
 /**
  *
  * @author James Moore (moore.work@live.com)
  */
-public class TestBars implements SingleEntity {
+public class TestBars implements RunnableSim {
 
     @Override
     public void draw(WorldGraphics2D w2d)

@@ -29,7 +29,7 @@ class UserInterfaceController extends JFrame implements Runnable
     private int width;
     private int height;
     private int depth;
-    private Game game;
+    private Simulation sim;
     private Timer time;
 
     /**
@@ -43,13 +43,13 @@ class UserInterfaceController extends JFrame implements Runnable
      * @throws VideoConfigurationException if the desired video mode is not
      * available or if fullscreen mode is not allowed
      */
-    public UserInterfaceController(int width, int height, int depth, Game thugAim)
+    public UserInterfaceController(int width, int height, int depth, Simulation thugAim)
             throws VideoConfigurationException
     {
         this.width = width;
         this.height = height;
         this.depth = depth;
-        this.game = thugAim;
+        this.sim = thugAim;
 
         // Save references to the graphics environment and device
         // for future reference
@@ -163,7 +163,7 @@ class UserInterfaceController extends JFrame implements Runnable
             long prev = 0;
 
             // Keep going until the game says it is done
-            while (!game.done())
+            while (!sim.done())
             {
                 //Tick the timer 
                 time.tick();
@@ -176,7 +176,7 @@ class UserInterfaceController extends JFrame implements Runnable
 
                 // Tell the game object to update itself - i.e. to make itself
                 // ready for the next draw.
-                game.update();
+                sim.update();
 
                 // Drawing is done through a Graphics object.  You can think
                 // of this as the object representing the screen.
@@ -192,8 +192,8 @@ class UserInterfaceController extends JFrame implements Runnable
 
                 // Tell the game to draw itself using the graphics context
                 WorldGraphics2D foo = new WorldGraphics2D(g);
-                
-                game.draw(foo);
+
+                sim.draw(foo);
 
                 // Write the FPS in the upper-left corner.  The coordinates
                 // designate the lower left of the text, and so anything
@@ -225,6 +225,9 @@ class UserInterfaceController extends JFrame implements Runnable
                 // this exception and continue generating frames.
             }
         }
+        catch(Exception e){
+            e.printStackTrace();
+        }
 // A "finally" clause will always execute even if an unhandled
 // exception causes the program to terminate.  We use this to
 // make sure we "clean up" the video
@@ -242,10 +245,10 @@ class UserInterfaceController extends JFrame implements Runnable
         }
     }
 
-    private class inputHandler implements  KeyListener
+    private class inputHandler implements KeyListener
     {
 
-            @Override
+        @Override
         public void keyTyped(KeyEvent e)
         {
             //Do nothing 
@@ -256,7 +259,7 @@ class UserInterfaceController extends JFrame implements Runnable
         public void keyPressed(KeyEvent e)
         {
             //Do nothing 
-            ((SteeringBehaviors) game).keyPressed(e);
+            ((Driver) sim).keyPressed(e);
         }
 
         @Override
