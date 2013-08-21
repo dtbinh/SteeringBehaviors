@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.Random;
 import javax.imageio.ImageIO;
 import steeringbehaviors.RunnableSim;
+import steeringbehaviors.Settings;
 import steeringbehaviors.WorldGraphics2D;
 
 /**
@@ -19,17 +20,19 @@ import steeringbehaviors.WorldGraphics2D;
 public class MandelBrot implements RunnableSim
 {
     
-    private int maxIter = 1000;
+    private int maxIter = 100;
     private BufferedImage visual;
     private Dimension screenSize;
     private double redMutator;
     private double blueMutator;
     private double greenMutator;
+private int time;
+    
     
     public MandelBrot()
     {
-        //screenSize = Settings.getInstance().getResolution();
-        screenSize = new Dimension(1200, 1200);
+        screenSize = Settings.getInstance().getResolution();
+        time = 0;
         Random rand = new Random();
         redMutator = rand.nextDouble();
         blueMutator = rand.nextDouble();
@@ -54,7 +57,7 @@ public class MandelBrot implements RunnableSim
     @Override
     public void update()
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //throw new UnsupportedOperationException("Not supported yet.");
     }
     
     public BufferedImage render()
@@ -69,17 +72,17 @@ public class MandelBrot implements RunnableSim
             for (int x = 0; x < screenSize.width; x++)
             {
                 //TODO get rid of these magic numbers
-                double xScaled = Scaler.scale((double) screenSize.width / 2, 0.0, 1.0, -1.0, x);
-                double yScaled = Scaler.scale((double) screenSize.height / 2, 0.0, 1.0, -2.5, y);
+                double xScaled = Scaler.scale((double) screenSize.width , 0.0, 1.0, -1.0, x);
+                double yScaled = Scaler.scale((double) screenSize.height , 0.0, 1.0, -2.5, y);
                 /// System.out.println(Scaler.scale((double) 1,  0.0, 1.0, -2.5, x));
 
                 iterations = iterateOnAPixel(xScaled, yScaled, maxIter);
                 
-                buff.setRGB(x, y, ColorTool.getRGBColor(iterations, iterations / 2, iterations * 10));
+                buff.setRGB(x, y, ColorTool.getRGBColor(iterations, iterations / 2, iterations * time));
                 //buff.setRGB(x, y, ColorTool.getRGBColor((int) (iterations + redMutator), (int) (iterations / greenMutator), (int) (iterations * blueMutator)));
             }
         }
-        
+        time += 1;
         return buff;
     }
     
