@@ -30,7 +30,7 @@ public class MandelBrot implements RunnableSim
   {
 
     private int maxIter = 1000;
-    private BufferedImage visual;
+    
     private Dimension screenSize;
     private double redMutator;
     private double blueMutator;
