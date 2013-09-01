@@ -1,5 +1,6 @@
 package steeringbehaviors;
 
+import edu.moravian.GOL.GameOfLife;
 import edu.moravian.math.Point2D;
 import edu.moravian.math.Vector2D;
 import java.awt.Color;
@@ -41,7 +42,8 @@ public class Driver extends JFrame implements Simulation, KeyListener
         background = set.getBackgroundColor();
         
         firstSet = new LinkedList<RunnableSim>();//EntityManager.getInstance();
-        firstSet.add(new MandelBrot());
+        //firstSet.add(new MandelBrot());
+        firstSet.add(new GameOfLife());
         set = Settings.getInstance();
         
         endgame_met = false;
