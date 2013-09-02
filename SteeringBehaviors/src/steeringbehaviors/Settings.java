@@ -2,6 +2,7 @@ package steeringbehaviors;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 
 /**
  * Settings class, get over it.  
@@ -16,7 +17,10 @@ public class Settings
 
     private Settings()
     {
-        // Exists only to defeat instantiation.
+             Toolkit tk = Toolkit.getDefaultToolkit();
+        Dimension resolution = tk.getScreenSize();
+
+        Settings.getInstance().setResolution(new Dimension(resolution.width,  resolution.height));
     }
 
     public static Settings getInstance()
