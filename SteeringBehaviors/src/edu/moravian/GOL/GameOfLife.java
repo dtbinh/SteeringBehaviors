@@ -19,25 +19,30 @@ import steeringbehaviors.WorldGraphics2D;
  */
 public class GameOfLife implements RunnableSim
 {
-
-    private static final int BOARD_WIDTH = 50;
-    private static final int BOARD_HEIGHT = 50;
+//TODO refactor board sizes;
+    private static final int BOARD_WIDTH = 5;
+    private static final int BOARD_HEIGHT = 5;
     private static final int STARVE_THRESHOLD = 2;
     private static final int RESURRECTION_AMOUNT = 3;
     private static final int OVERCROWDING_THRESHOLD = 3;
-    private static final double SPAWN_THRESHHOLD = .9;
+    private static final double SPAWN_THRESHHOLD = .6;
     private static final int ITERATION_COUNT = 1000;
     private static boolean[][] board;
 
-    private static boolean[][] runOneStep(boolean[][] world)
+    protected static boolean[][] runOneStep(boolean[][] world)
     {
+     //   boolean[][] nextWorld = cloneBoard(board);
         boolean[][] nextWorld = world.clone();
 
         for (int x = 0; x < world.length; x++)
         {
             for (int y = 0; y < world[x].length; y++)
             {
-                int ne = countNeighbors(world, x, y);
+                if(x==2 && y==2){
+                    System.out.print("");  
+                }
+                
+                int ne = countLivingNeighbors(world, x, y);
 
                 if (world[x][y] == true)
                 {
@@ -79,7 +84,7 @@ public class GameOfLife implements RunnableSim
     public static void main(String[] args)
     {
         boolean[][] world;
-        double spawnThreshhold = .4;
+        double spawnThreshhold = SPAWN_THRESHHOLD;
         world = new boolean[BOARD_WIDTH][BOARD_HEIGHT];
         for (int x = 0; x < world.length; x++)
         {
@@ -97,22 +102,23 @@ public class GameOfLife implements RunnableSim
         int iters = runGame(world, true);
     }
 
-    private static void outputBoard(boolean[][] world)
+    protected static void outputBoard(boolean[][] world)
     {
-        char rep;
+        String rep;
         for (int i = 0; i < world.length; i++)
         {
             for (int j = 0; j < world[i].length; j++)
             {
-                if (world[i][j] == true)
+                if (world[j][i] == true)
                 {
-                    rep = '*';
+                    rep = "*";
                 }
                 else
                 {
-                    rep = ' ';
+                    //rep = '█';
+                    rep = String.valueOf(countLivingNeighbors(world, i, j));
                 }
-                System.out.printf("%-2c", rep);
+                System.out.printf("%-10s", i + "," + j + ": " +rep);
             }
             System.out.println("");
         }
@@ -157,7 +163,7 @@ public class GameOfLife implements RunnableSim
         return board;
     }
 
-    private static int countNeighbors(boolean[][] world, int x, int y)
+    protected static int countLivingNeighbors(boolean[][] world, int x, int y)
     {
 
         int count = 0;
@@ -167,27 +173,27 @@ public class GameOfLife implements RunnableSim
         int yU = y + 1;
         if (withinXBoundries(xL))
         {
-            count += accountFor(world[x][y]);
+            count += accountFor(world[xL][y]);
             if (withinYBoundries(yU))
             {
-                count += accountFor(world[x][yU]);
+                count += accountFor(world[xL][yU]);
             }
             if (withinYBoundries(yD))
             {
-                count += accountFor(world[x][yD]);
+                count += accountFor(world[xL][yD]);
             }
         }
 
         if (withinXBoundries(xR))
         {
-            count += accountFor(world[x][y]);
+            count += accountFor(world[xR][y]);
             if (withinYBoundries(yU))
             {
-                count += accountFor(world[x][yU]);
+                count += accountFor(world[xR][yU]);
             }
             if (withinYBoundries(yD))
             {
-                count += accountFor(world[x][yD]);
+                count += accountFor(world[xR][yD]);
             }
         }
 
@@ -232,7 +238,7 @@ public class GameOfLife implements RunnableSim
         }
     }
 
-    private static boolean isBoardDead(boolean[][] world)
+    protected static boolean isBoardDead(boolean[][] world)
     {
         boolean status = true;
         for (int x = 0; x < world.length; x++)
@@ -267,8 +273,6 @@ public class GameOfLife implements RunnableSim
         {
             for (int j = 0; j < BOARD_HEIGHT; j++)
             {
-
-
                 Color renderColor;
 
                 if (board[i][j])
@@ -296,4 +300,25 @@ public class GameOfLife implements RunnableSim
     public void update()
     {
     }
+
+    private static boolean[][] getBoard() {
+        return board;
+    }
+    
+    private static boolean[][] cloneBoard(boolean[][] board){
+        boolean[][] newBoard = new boolean[board.length][];
+        
+              for (int x = 0; x < board.length; x++) {
+boolean[] src = board[x];
+boolean[] recp = new boolean[src.length];
+System.arraycopy(src, 0, recp, 0, src.length);
+            }
+        
+        
+        return newBoard;
+    }
+ 
+    
+    
 }
+//TODO do better unit testing
