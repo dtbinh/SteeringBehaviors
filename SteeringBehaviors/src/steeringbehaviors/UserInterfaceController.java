@@ -46,7 +46,7 @@ class UserInterfaceController extends JFrame implements Runnable
     public UserInterfaceController(int width, int height, int depth, Simulation thugAim)
             throws VideoConfigurationException
     {
-        this.width = width;
+    this.width = width;
         this.height = height;
         this.depth = depth;
         this.sim = thugAim;

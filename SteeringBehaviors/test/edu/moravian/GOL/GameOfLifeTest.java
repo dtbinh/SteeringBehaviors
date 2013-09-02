@@ -21,10 +21,10 @@ public class GameOfLifeTest {
 
     @Test
     public void ruleOneTest() {
-        boolean[][] board = new boolean[5][5];
-        for (boolean[] bool : board) {
-            for (boolean boolElement : bool) {
-                boolElement = false;
+        boolean[][] board = new boolean[4][4];
+        for (int x = 0; x < board.length; x++) {
+            for (int y = 0; y < board[x].length; y++) {
+                board[x][y] = false;
             }
         }
         board[2][2] = true;
