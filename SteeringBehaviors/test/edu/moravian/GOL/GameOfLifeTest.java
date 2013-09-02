@@ -116,6 +116,26 @@ public class GameOfLifeTest {
     }
 
     @Test
+    public void testNearNeighborsCorners() {
+                boolean[][] board = new boolean[5][5];
+        for (int x = 0; x < board.length; x++) {
+            for (int y = 0; y < board[x].length; y++) {
+                board[x][y] = false;
+            }
+        }
+        board[2][1] = true;
+        board[3][3] = true;
+        board[1][3] = true;
+        
+        
+        assertEquals(0, GameOfLife.countLivingNeighbors(board, 4, 0));
+        assertEquals(0, GameOfLife.countLivingNeighbors(board, 4,1));
+        assertEquals(1, GameOfLife.countLivingNeighbors(board, 4,2));
+        assertEquals(2, GameOfLife.countLivingNeighbors(board, 2,4));
+        
+    }
+
+    @Test
     public void testStarvationDeathOneElement() {
         boolean[][] board = new boolean[5][5];
         for (int x = 0; x < board.length; x++) {
@@ -155,9 +175,10 @@ public class GameOfLifeTest {
         board[2][1] = true;
         board[3][3] = true;
         board[1][3] = true;
-GameOfLife.outputBoard(board);
+       // GameOfLife.outputBoard(board);
 
         board = GameOfLife.runOneStep(board);
+  
         assertFalse(GameOfLife.isBoardDead(board));
 
         for (int x = 0; x < board.length; x++) {
@@ -169,6 +190,9 @@ GameOfLife.outputBoard(board);
                 }
             }
         }
+        
+        board = GameOfLife.runOneStep(board);
+        
+        assertTrue(GameOfLife.isBoardDead(board));
     }
 }
-

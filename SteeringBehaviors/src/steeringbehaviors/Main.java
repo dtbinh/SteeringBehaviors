@@ -20,15 +20,13 @@ public class Main
     public static void main(String[] args) throws FileNotFoundException, IIOException
       {
 
-        Toolkit tk = Toolkit.getDefaultToolkit();
-        Dimension resolution = tk.getScreenSize();
-
-        DWIDTH = resolution.width;
-        DHEIGHT = resolution.height;
-        Settings.getInstance().setResolution(new Dimension(DWIDTH, DHEIGHT));
 
         // Create our game with a world size equal to
         // the screen size
+          
+          DWIDTH  = Settings.getInstance().getResolution().width;
+          DHEIGHT = Settings.getInstance().getResolution().height;
+          
         Driver g = new Driver(DWIDTH, DHEIGHT);
 
 

@@ -11,16 +11,15 @@ import java.awt.Toolkit;
 public class Settings
 {
 
-    public final static Settings instance = new Settings();
+    private final static Settings instance = new Settings();
     private final static Dimension worldsize = new Dimension(2000,1000);
     private Dimension res;
 
     private Settings()
     {
              Toolkit tk = Toolkit.getDefaultToolkit();
-        Dimension resolution = tk.getScreenSize();
+         res = tk.getScreenSize();
 
-        Settings.getInstance().setResolution(new Dimension(resolution.width,  resolution.height));
     }
 
     public static Settings getInstance()
