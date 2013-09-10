@@ -28,7 +28,6 @@ public class CollissionDetector
 
         Vector2D movecAtoB = ballA.getVelocity();
         
-
         //If the movement vectors is smaller than the distance between the two bodies..
         if (movecAtoB.magnitude() < (distanceSQ - (sumRadii * sumRadii)))
         {
@@ -39,7 +38,6 @@ public class CollissionDetector
         //Get a vector from B to A 
         Vector2D C = ballB.getCenter().minus(ballA.getCenter());
      
-
         //Compare that vector to a vector from A to B 
         double DP_of_directions = movecAtoB.getNormalized().dot(C);
         if (DP_of_directions < 0)
@@ -78,4 +76,4 @@ public class CollissionDetector
 
         return true;
     }
-}
+  }

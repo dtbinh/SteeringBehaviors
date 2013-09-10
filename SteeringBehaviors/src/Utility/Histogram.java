@@ -12,7 +12,7 @@ import java.util.Set;
  */
 public class Histogram
 {
-
+//TODO calculate standard deviation, etc
     HashMap<Integer, Integer> histogram;
 
     public Histogram()
@@ -20,25 +20,28 @@ public class Histogram
         this.histogram = new HashMap<Integer, Integer>();
     }
 
+    /**
+     * Adds a number to the histogram.  
+     * @param number Any integer that you want accounted for
+     */
     public void add(int number)
     {
         int count = 0;
-        Integer foo = new Integer(number);
-        if (histogram.get(foo) != null)
+    
+        if (histogram.get(number) != null)
         {
-            count += histogram.get(foo).intValue();
+            count += histogram.get(number).intValue();
         }
 
         histogram.put(new Integer(number), new Integer(count + 1));
     }
 
-    public String contents()
-    {
-//for(int i = Integer.MIN_VALUE; i < Integer.MAX_VALUE; i++){
-//    if(histogram.)
-//}
-        
-        
-        return histogram.toString();
+    public HashMap contents()
+    {  
+        return histogram;
     }
+    
+    public String contentsAsFormattedString(){return histogram.toString();}
+    
+    
 }

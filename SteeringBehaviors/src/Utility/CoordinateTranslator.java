@@ -8,6 +8,9 @@ import edu.moravian.math.Point2D;
  */
 public class CoordinateTranslator
   {
+    
+    //Remember, screen's 0,0 is upper left 
+    //World's 0,0 is lower right 
     private int screenWidth;
     private int screenHeight;
     private double worldWidth;
@@ -26,9 +29,8 @@ public class CoordinateTranslator
         this.worldWidth = worldWidth;
         this.worldHeight = worldHeight;
       }
-   
     public Point2D screenToWorld(Point2D screenPoint)
-      {
+      {               
         return new Point2D((screenPoint.getX() / screenWidth) * worldWidth,
                 (1 - screenPoint.getY() / screenHeight) * worldHeight);
       }
