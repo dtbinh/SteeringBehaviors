@@ -1,4 +1,4 @@
-package Utility;
+package com.me.utility;
 
 /**
  *
@@ -7,8 +7,8 @@ package Utility;
 public class Complex
   {
 
-    public double real;
-    public double imaginary;
+    private double real;
+    private double imaginary;
 
     public Complex()
       {
@@ -69,3 +69,4 @@ public class Complex
         return Math.sqrt(((real * real) + (imaginary * imaginary)));
       }
   }
+

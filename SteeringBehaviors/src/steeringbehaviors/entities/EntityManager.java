@@ -8,8 +8,8 @@ import java.util.LinkedList;
 import java.util.Random;
 import java.util.Set;
 import javax.imageio.IIOException;
-import steeringbehaviors.Settings;
-import steeringbehaviors.RunnableSim;
+import com.me.steeringbehaviors.Settings;
+import com.me.steeringbehaviors.RunnableSim;
 
 /**
  *

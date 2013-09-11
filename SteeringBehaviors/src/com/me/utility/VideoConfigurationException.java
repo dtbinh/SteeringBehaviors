@@ -1,5 +1,6 @@
-package steeringbehaviors;
+package com.me.utility;
 
+//TODO replace this 
 
 /**
  * This class represents a video configuration exception.
@@ -10,7 +11,11 @@ package steeringbehaviors;
  */
 public class VideoConfigurationException extends Exception
 {
-    public VideoConfigurationException(String msg)
+    /**
+     * An exception to indicate that the video configuration is bad
+     * @param msg 
+     */
+    public VideoConfigurationException(final String msg)
     {
         super(msg);
     }

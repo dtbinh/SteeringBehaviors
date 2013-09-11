@@ -16,7 +16,7 @@ public class Vector2D
 
     private double x;
     private double y;
-    public static final Vector2D zero = new Vector2D(0, 0);
+    public static final Vector2D ZERO = new Vector2D(0, 0);
     public static final double TOL = 1.0E-8;
 
     public Vector2D()
@@ -42,7 +42,7 @@ public class Vector2D
      */
     public double angle()
     {
-        if (this.equals(Vector2D.zero))
+        if (this.equals(Vector2D.ZERO))
         {
             return 0.0;
         }
@@ -175,7 +175,7 @@ public class Vector2D
      */
     public Vector2D getNormalized()
     {
-        if (this.equals(Vector2D.zero))
+        if (this.equals(Vector2D.ZERO))
         {
             return new Vector2D(0, 0);
         }
@@ -324,7 +324,7 @@ public class Vector2D
 
         if (magnitude == 0)
         {
-            return new Vector2D(Vector2D.zero);
+            return new Vector2D(Vector2D.ZERO);
         }
 
         double mag_sq = magnitude * magnitude;
@@ -347,7 +347,7 @@ public class Vector2D
     {
         if (maxMagnitude == 0)
         {
-            return new Vector2D(Vector2D.zero);
+            return new Vector2D(Vector2D.ZERO);
         }
         Random rand = new Random(System.currentTimeMillis());
 

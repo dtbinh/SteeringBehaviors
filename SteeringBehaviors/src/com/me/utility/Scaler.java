@@ -1,4 +1,4 @@
-package Utility;
+package com.me.utility;
 
 /**
  * Class with one static method to scale a number between a range

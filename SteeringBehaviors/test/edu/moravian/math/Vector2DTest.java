@@ -181,7 +181,7 @@ public class Vector2DTest
     @Test
     public void zeroAngle()
     {
-        assertEquals(0.0, new Vector2D(Vector2D.zero).angle(), Vector2D.TOL);
+        assertEquals(0.0, new Vector2D(Vector2D.ZERO).angle(), Vector2D.TOL);
     }
 
     @Test
@@ -228,7 +228,7 @@ public class Vector2DTest
         Vector2D five = new Vector2D(fiveFiveVect);
         try
         {
-            assertEquals(Vector2D.zero, five.divide(0.0));
+            assertEquals(Vector2D.ZERO, five.divide(0.0));
             fail("This should throw IllegalArguementException");
         }
         catch (IllegalArgumentException e)
@@ -245,7 +245,7 @@ public class Vector2DTest
         assertEquals(new Vector2D(5, 1), swap);
         try
         {
-            swap = new Vector2D(Vector2D.zero);
+            swap = new Vector2D(Vector2D.ZERO);
             swap.divideEquals(0);
             fail("Should have thrown Exeeption");
         }
@@ -411,9 +411,9 @@ public class Vector2DTest
     @Test
     public void getNormalizedZero()
     {
-        Vector2D swap = new Vector2D(Vector2D.zero);
+        Vector2D swap = new Vector2D(Vector2D.ZERO);
 
-        assertEquals(Vector2D.zero, swap.getNormalized());
+        assertEquals(Vector2D.ZERO, swap.getNormalized());
     }
 
     //Get Magnitude tests
@@ -495,9 +495,9 @@ public class Vector2DTest
     @Test
     public void negateZeroTest()
     {
-        Vector2D temp = Vector2D.zero;
+        Vector2D temp = Vector2D.ZERO;
         temp.negate();
-        assertEquals(true, temp.equals(Vector2D.zero));
+        assertEquals(true, temp.equals(Vector2D.ZERO));
     }
 
     //Addition tests
@@ -506,9 +506,9 @@ public class Vector2DTest
     {
         assertEquals(new Vector2D(13, -3), twelveNegFourVect.plus(new Vector2D(1, 1)));
         assertEquals(new Vector2D(11, -5), twelveNegFourVect.plus(new Vector2D(-1, -1)));
-        assertEquals(new Vector2D(-1, -1), Vector2D.zero.plus(new Vector2D(-1, -1)));
-        assertEquals(new Vector2D(0, 0), Vector2D.zero.plus(new Vector2D(0, 0)));
-        assertEquals(new Vector2D(1, -1), Vector2D.zero.plus(new Vector2D(1, -1)));
+        assertEquals(new Vector2D(-1, -1), Vector2D.ZERO.plus(new Vector2D(-1, -1)));
+        assertEquals(new Vector2D(0, 0), Vector2D.ZERO.plus(new Vector2D(0, 0)));
+        assertEquals(new Vector2D(1, -1), Vector2D.ZERO.plus(new Vector2D(1, -1)));
     }
 
     @Test
@@ -539,7 +539,7 @@ public class Vector2DTest
     public void randomFixedMagTestSimple()
     {
         assertEquals(20.9, Vector2D.randomVectorFixedMagnitude(20.9).magnitude(), Vector2D.TOL);
-        assertEquals(Vector2D.zero, Vector2D.randomVectorFixedMagnitude(0));
+        assertEquals(Vector2D.ZERO, Vector2D.randomVectorFixedMagnitude(0));
     }
 
     //Random vector max magnitude 
@@ -554,7 +554,7 @@ public class Vector2DTest
             assertEquals(true, (vect.magnitude() < 20));
         }
 
-        assertEquals(Vector2D.zero, Vector2D.randomVectorMaxMagnitude(0));
+        assertEquals(Vector2D.ZERO, Vector2D.randomVectorMaxMagnitude(0));
     }
 
     //Reflection tests
@@ -578,7 +578,7 @@ public class Vector2DTest
         Vector2D vect = new Vector2D();
         vect.reflectX();
         vect.reflectY();
-        assertEquals(Vector2D.zero, vect);
+        assertEquals(Vector2D.ZERO, vect);
     }
 
     ///////////////////////////////////////////////////
@@ -593,7 +593,7 @@ public class Vector2DTest
         assertEquals(new Vector2D(10.0, 18.0), res.scalePlus(2.0, temp));
 
         assertEquals(res, res.scalePlus(0.0, temp));
-        assertEquals(Vector2D.zero, Vector2D.zero.scalePlus(0.0, new Vector2D(0, 0)));
+        assertEquals(Vector2D.ZERO, Vector2D.ZERO.scalePlus(0.0, new Vector2D(0, 0)));
     }
 
     //Scale equals test
@@ -670,7 +670,7 @@ public class Vector2DTest
 
         assertEquals(0, swap.toString().compareTo("(5.0, -10.0)"));
 
-        swap = new Vector2D(Vector2D.zero);
+        swap = new Vector2D(Vector2D.ZERO);
         assertEquals(0, new Vector2D(0, 0).toString().compareTo("(0.0, 0.0)"));
     }
 
@@ -733,7 +733,7 @@ public class Vector2DTest
     {
         Vector2D swap = new Vector2D(0, 0);
         swap.normalize();
-        assertEquals(Vector2D.zero, swap);
+        assertEquals(Vector2D.ZERO, swap);
     }
 
     @Test

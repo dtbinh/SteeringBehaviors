@@ -12,7 +12,7 @@ public class Point2D
     private double x;
     private double y;
     public static final double TOL = 1.0E-8;
-    public static final Point2D zero = new Point2D(0, 0);
+    public static final Point2D ZERO = new Point2D(0, 0);
 
     public Point2D()
       {

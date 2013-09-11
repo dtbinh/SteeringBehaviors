@@ -1,4 +1,4 @@
-package steeringbehaviors;
+package com.me.steeringbehaviors;
 
 import edu.moravian.GOL.GameOfLife;
 import edu.moravian.math.Point2D;
@@ -27,7 +27,7 @@ public class Driver extends JFrame implements Simulation, KeyListener
     private int worldWidthCenter;
     private int worldHeightCenter;
     private LinkedList<RunnableSim> firstSet;
-    private boolean endgame_met;
+    private boolean endgameMet;
     private int lives;
     private Color background;
     private Settings set;
@@ -41,12 +41,13 @@ public class Driver extends JFrame implements Simulation, KeyListener
         set = Settings.getInstance();
         background = set.getBackgroundColor();
         
-        firstSet = new LinkedList<RunnableSim>();//EntityManager.getInstance();
+        firstSet = new LinkedList<RunnableSim>();
+        //EntityManager.getInstance();
         //firstSet.add(new MandelBrot());
         firstSet.add(new GameOfLife());
         set = Settings.getInstance();
         
-        endgame_met = false;
+        endgameMet = false;
     }
     
     @Override
@@ -109,7 +110,7 @@ public class Driver extends JFrame implements Simulation, KeyListener
     @Override
     public boolean done()
     {
-        return endgame_met;
+        return endgameMet;
     }
     
     public void keyTyped(KeyEvent ke)
@@ -122,7 +123,7 @@ public class Driver extends JFrame implements Simulation, KeyListener
         //throw new UnsupportedOperationException("Not supported yet.");
         if (ke.getKeyChar() == KeyEvent.VK_SPACE)
         {
-            endgame_met = true;
+            endgameMet = true;
         }
     }
     
@@ -156,7 +157,7 @@ public class Driver extends JFrame implements Simulation, KeyListener
     }
 
     /**
-     * Determines if a ball has fallen outside the veritcal bounds
+     * Determines if a ball has fallen outside the vertical bounds
      *
      * @param b
      * @return

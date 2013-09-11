@@ -9,9 +9,9 @@ import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import steeringbehaviors.RunnableSim;
-import steeringbehaviors.Settings;
-import steeringbehaviors.WorldGraphics2D;
+import com.me.steeringbehaviors.RunnableSim;
+import com.me.steeringbehaviors.Settings;
+import com.me.steeringbehaviors.WorldGraphics2D;
 
 /**
  *
@@ -29,6 +29,10 @@ public class GameOfLife implements RunnableSim
     private static final double SPAWN_THRESHHOLD = .8;
     private static final int ITERATION_COUNT = 1000;
     private static boolean[][] board;
+    private GraphicsEnvironment env;
+    private GraphicsDevice device;
+    private GraphicsConfiguration config;
+    private BufferedImage buff;
 //TODO do a better world clone
 
     protected static boolean[][] runOneStep(boolean[][] world)
@@ -72,10 +76,6 @@ public class GameOfLife implements RunnableSim
           }
         return nextWorld;
       }
-    GraphicsEnvironment env;
-    GraphicsDevice device;
-    GraphicsConfiguration config;
-    BufferedImage buff;
 
     public GameOfLife()
       {

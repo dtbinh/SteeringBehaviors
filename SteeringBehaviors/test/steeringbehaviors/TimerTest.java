@@ -8,7 +8,7 @@ package steeringbehaviors;
 
 import org.junit.After;
 import org.junit.Before;
-import Utility.Timer;
+import com.me.utility.Timer;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

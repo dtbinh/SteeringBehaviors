@@ -1,11 +1,11 @@
 package steeringbehaviors.entities;
 
-import steeringbehaviors.RunnableSim;
+import com.me.steeringbehaviors.RunnableSim;
 import edu.moravian.math.Point2D;
 import edu.moravian.math.Vector2D;
 import java.awt.Color;
-import Utility.CollissionDetector;
-import steeringbehaviors.WorldGraphics2D;
+import com.me.utility.CollissionDetector;
+import com.me.steeringbehaviors.WorldGraphics2D;
 
 /**
  * This is an entity that responds to other entities and its own behavior.

@@ -1,7 +1,6 @@
-package steeringbehaviors;
+package com.me.steeringbehaviors;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import com.me.utility.VideoConfigurationException;
 import java.io.FileNotFoundException;
 import javax.imageio.IIOException;
 
@@ -11,15 +10,35 @@ import javax.imageio.IIOException;
  */
 public class Main
   {
+    
+        //TODO clean here
     //TODO resolution manager class? 
+    private static final int DBITDEPTH = 32;
+    //private static final int DEFAULT_WIDTH = 800;
+    //private static final int DEFAULT_HEIGHT = 600;
+/**
+ * No need to allow you cheeky bastards to instantiate this
+ */
+    private Main()
+      {
+      }
+    
 
-    private static int DBITDEPTH = 32;
 
-    public static void main(String[] args) throws FileNotFoundException, IIOException
+    /**
+     * Runs the game!
+     *
+     * @param args
+     * @throws FileNotFoundException
+     * @throws IIOException
+     */
+    public static void main(final String[] args) throws FileNotFoundException, IIOException
       {
 
-        int defaultWidth = 800;
-        int defaultHeight = 600;
+        int defaultWidth;
+        //= DEFAULT_WIDTH;
+        int defaultHeight;
+        //= DEFAULT_HEIGHT;
         // Create our game with a world size equal to
         // the screen size
 

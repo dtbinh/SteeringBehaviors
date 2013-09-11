@@ -1,7 +1,7 @@
 
 package mandelbrot;
 
-import steeringbehaviors.Settings;
+import com.me.steeringbehaviors.Settings;
 
 /**
  *  This class renders a simple mandelbrot image 
@@ -13,3 +13,4 @@ public class MandelBrotEngine {
     
     
 }
+

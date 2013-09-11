@@ -2,10 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Utility;
+package com.me.utility;
 
-import org.junit.Test;
+import com.me.utility.Scaler;
 import static org.junit.Assert.*;
+import org.junit.Test;
 
 /**
  *

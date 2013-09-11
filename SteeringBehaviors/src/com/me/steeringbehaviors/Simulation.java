@@ -1,5 +1,6 @@
-package steeringbehaviors;
+package com.me.steeringbehaviors;
 
+//TODO phase this out
 /**
  * This interface defines the required elements for any game that uses
  * the VideoController

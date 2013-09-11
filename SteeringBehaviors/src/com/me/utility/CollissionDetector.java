@@ -1,4 +1,4 @@
-package Utility;
+package com.me.utility;
 
 import edu.moravian.math.Vector2D;
 import steeringbehaviors.entities.Ball;
@@ -7,17 +7,24 @@ import steeringbehaviors.entities.Ball;
  *
  * @author James Moore (moore.work@live.com)
  */
-public class CollissionDetector
-{
+public final class CollissionDetector
+  {
+/**
+ * Utility class, no need to allow instatiation 
+ */
+    private CollissionDetector()
+      {
+      }
 
     /**
-     *  Static method that determines if two balls are going to collide 
-     * @param ballA  First ball
+     * Static method that determines if two balls are going to collide
+     *
+     * @param ballA First ball
      * @param ballB Second ball
      * @return Are the balls colliding now or will they between frames?
      */
-    public static boolean twoSpheresColliding(Ball ballA, Ball ballB)
-    {
+    public static boolean twoSpheresColliding(final Ball ballA, final Ball ballB)
+      {
         //double distance = Math.sqrt(Math.pow(ballA.getCenter().getX() - ballB.getCenter().getX(), 2)    + Math.pow(ballA.getCenter().getY() - ballB.getCenter().getY(), 2));
         double distanceSQ = Math.pow(ballA.getCenter().getX() - ballB.getCenter().getX(), 2)
                 + Math.pow(ballA.getCenter().getY() - ballB.getCenter().getY(), 2);
@@ -27,53 +34,53 @@ public class CollissionDetector
         double sumRadii = (ballB.getRadius() + ballA.getRadius());
 
         Vector2D movecAtoB = ballA.getVelocity();
-        
+
         //If the movement vectors is smaller than the distance between the two bodies..
         if (movecAtoB.magnitude() < (distanceSQ - (sumRadii * sumRadii)))
-        {
+          {
             //We ain't colliding
             return false;
-        }
+          }
 
         //Get a vector from B to A 
-        Vector2D C = ballB.getCenter().minus(ballA.getCenter());
-     
+        Vector2D cVar = ballB.getCenter().minus(ballA.getCenter());
+
         //Compare that vector to a vector from A to B 
-        double DP_of_directions = movecAtoB.getNormalized().dot(C);
-        if (DP_of_directions < 0)
-        {
+        double dpOfDirections = movecAtoB.getNormalized().dot(cVar);
+        if (dpOfDirections < 0)
+          {
             //If this is negative, A is not moving toward B 
             return false;
-        }
+          }
 
 
         //Get the distance between the two bodies
-        Double distance_from_B = C.magnitudeSq() - (DP_of_directions * DP_of_directions);
-        
+        Double distanceFromB = cVar.magnitudeSq() - (dpOfDirections * dpOfDirections);
+
 
         //If that is bigger
-        if (distance_from_B >= (sumRadii * sumRadii))
-        {
+        if (distanceFromB >= (sumRadii * sumRadii))
+          {
             //We ain't colliding 
             return false;
-        }
+          }
 
-        Double T = (sumRadii * sumRadii) - distance_from_B;
+        Double tVar = (sumRadii * sumRadii) - distanceFromB;
 
         //If we have gone past the second circle 
-        if (T < 0)
-        {
+        if (tVar < 0)
+          {
             return false;
-        }
+          }
 
-        Double travelDistance = DP_of_directions - Math.sqrt(T);
+        Double travelDistance = dpOfDirections - Math.sqrt(tVar);
 
         //If we can't reach
         if (movecAtoB.magnitude() < travelDistance)
-        {
+          {
             return false;
-        }
+          }
 
         return true;
-    }
+      }
   }

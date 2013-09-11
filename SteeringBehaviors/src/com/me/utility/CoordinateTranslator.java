@@ -1,14 +1,15 @@
-package Utility;
+package com.me.utility;
 
 import edu.moravian.math.Point2D;
 
 /**
- * This class translates between screen coordinates and world coordinates 
+ * This class translates between screen coordinates and world coordinates
+ *
  * @author James Moore (moore.work@live.com)
  */
 public class CoordinateTranslator
   {
-    
+
     //Remember, screen's 0,0 is upper left 
     //World's 0,0 is lower right 
     private int screenWidth;
@@ -20,17 +21,18 @@ public class CoordinateTranslator
      * @param screenWidth Screen width in pixels
      * @param screenHeight Screen Height in pixels
      * @param worldWidth world width in w/e
-     * @param worldHeight  world height in w/e
+     * @param worldHeight world height in w/e
      */
     public CoordinateTranslator(int screenWidth, int screenHeight, double worldWidth, double worldHeight)
       {
-        this.screenWidth = screenWidth ;
-        this.screenHeight = screenHeight ;
+        this.screenWidth = screenWidth;
+        this.screenHeight = screenHeight;
         this.worldWidth = worldWidth;
         this.worldHeight = worldHeight;
       }
+
     public Point2D screenToWorld(Point2D screenPoint)
-      {               
+      {
         return new Point2D((screenPoint.getX() / screenWidth) * worldWidth,
                 (1 - screenPoint.getY() / screenHeight) * worldHeight);
       }

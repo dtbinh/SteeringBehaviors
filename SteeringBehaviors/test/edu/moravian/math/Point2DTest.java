@@ -218,9 +218,9 @@ public class Point2DTest
     public void plusTests()
     {
         assertEquals(new Point2D(-4, -3), new Point2D(1, 2).plus(new Vector2D(-5, -5)));
-        assertEquals(Point2D.zero, fiveFive.plus(new Vector2D(-5, -5)));
+        assertEquals(Point2D.ZERO, fiveFive.plus(new Vector2D(-5, -5)));
         assertEquals(new Point2D(10, 7), fiveFive.plus(new Vector2D(5, 2)));
-        assertEquals(Point2D.zero, new Point2D(0, 0).plus(new Vector2D(0, 0)));
+        assertEquals(Point2D.ZERO, new Point2D(0, 0).plus(new Vector2D(0, 0)));
     }
 
     @Test
@@ -228,7 +228,7 @@ public class Point2DTest
     {
         Point2D tmpPt = new Point2D(0, 0);
 
-        assertEquals(Point2D.zero, tmpPt);
+        assertEquals(Point2D.ZERO, tmpPt);
 
         tmpPt.plusEquals(new Vector2D(1, 2));
 
@@ -243,7 +243,7 @@ public class Point2DTest
     public void randomPt()
     {
         Point2D pt = new Point2D();
-        assertEquals(Point2D.zero, pt);
+        assertEquals(Point2D.ZERO, pt);
         pt = Point2D.randomPoint(0.0, 1.0, 0.0, 1.1);
         pt.getX();
     }
@@ -277,7 +277,7 @@ public class Point2DTest
     public void scalePlusEqualsTest()
     {
         Point2D swap = new Point2D(fiveFive);
-        swap.scalePlusEquals(2, Vector2D.zero);
+        swap.scalePlusEquals(2, Vector2D.ZERO);
         assertEquals(fiveFive, swap);
         swap.scalePlusEquals(2, new Vector2D(2, 4));
         assertEquals(new Point2D(9, 13), swap);

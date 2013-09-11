@@ -1,6 +1,6 @@
-package steeringbehaviors;
+package com.me.steeringbehaviors;
 
-import Utility.CoordinateTranslator;
+import com.me.utility.CoordinateTranslator;
 import edu.moravian.math.Point2D;
 import edu.moravian.math.Vector2D;
 import java.awt.Color;

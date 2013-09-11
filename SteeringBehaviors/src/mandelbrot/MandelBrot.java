@@ -1,7 +1,7 @@
 package mandelbrot;
 
-import Utility.ColorTool;
-import Utility.Scaler;
+import com.me.utility.ColorTool;
+import com.me.utility.Scaler;
 import edu.moravian.math.Point2D;
 import java.awt.Dimension;
 import java.awt.GraphicsConfiguration;
@@ -10,9 +10,9 @@ import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 import java.util.concurrent.CyclicBarrier;
-import steeringbehaviors.RunnableSim;
-import steeringbehaviors.Settings;
-import steeringbehaviors.WorldGraphics2D;
+import com.me.steeringbehaviors.RunnableSim;
+import com.me.steeringbehaviors.Settings;
+import com.me.steeringbehaviors.WorldGraphics2D;
 
 /**
  *
@@ -59,7 +59,7 @@ public class MandelBrot implements RunnableSim
     @Override
     public void draw(WorldGraphics2D w2d)
     {
-        w2d.drawImage(this.render(), Point2D.zero, w2d);
+        w2d.drawImage(this.render(), Point2D.ZERO, w2d);
     }
 
     @Override
@@ -98,7 +98,8 @@ public class MandelBrot implements RunnableSim
     {
         int iteration = 0;
         double x, y;
-        x = y = 0;
+        x = 0;
+        y = 0;
 
         while ((x * x + y * y) < 4 && iteration < max_iteration)
         {
@@ -168,7 +169,7 @@ class pixelIterator extends Thread
             img.setRGB(i, yIndex, ColorTool.getRGBColor(iteration, iteration / 2, iteration * time));
         }
     }
+    //TODO thread creation seems to take a long time? 
 }
 
 
-//TODO thread creation seems to take a long time? 

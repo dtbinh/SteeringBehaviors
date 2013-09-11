@@ -1,4 +1,4 @@
-package steeringbehaviors;
+package com.me.steeringbehaviors;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -12,7 +12,8 @@ public class Settings
 {
 
     private final static Settings instance = new Settings();
-    private final static Dimension worldsize = new Dimension(2000,1000);
+    private final static Dimension worldSize = new Dimension(2000,1000);
+    private static final int RADIUS_SCALE_CONST = 10;
     private Dimension res;
 
     private Settings()
@@ -44,17 +45,17 @@ public class Settings
 
     public double getWorldWidth()
     {
-        return worldsize.getWidth();
+        return worldSize.getWidth();
     }
 
     public double getRadiusScale()
     {
-        return 10;
+        return RADIUS_SCALE_CONST;
     }
 
     public double getWorldHeight()
     {
-        return worldsize.getHeight();
+        return worldSize.getHeight();
     }
  
     public String getBallFileName()
@@ -74,6 +75,6 @@ public class Settings
 
     public Dimension getWorldSize()
     {
-        return worldsize;
+        return worldSize;
     }
 }

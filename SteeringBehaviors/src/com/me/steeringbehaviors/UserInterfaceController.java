@@ -1,6 +1,7 @@
-package steeringbehaviors;
+package com.me.steeringbehaviors;
 
-import Utility.Timer;
+import com.me.utility.VideoConfigurationException;
+import com.me.utility.Timer;
 import java.awt.Color;
 import java.awt.DisplayMode;
 import java.awt.Graphics;
@@ -76,7 +77,7 @@ class UserInterfaceController extends JFrame implements Runnable
         // repaint requests.
         setIgnoreRepaint(true);
 
-        inputHandler input = new inputHandler();
+        InputHandler input = new InputHandler();
 
         this.addKeyListener(input);
 
@@ -227,7 +228,7 @@ class UserInterfaceController extends JFrame implements Runnable
         }
         catch(Exception e){
             e.printStackTrace();
-        }
+        } 
 // A "finally" clause will always execute even if an unhandled
 // exception causes the program to terminate.  We use this to
 // make sure we "clean up" the video
@@ -245,7 +246,7 @@ class UserInterfaceController extends JFrame implements Runnable
         }
     }
 
-    private class inputHandler implements KeyListener
+    private class InputHandler implements KeyListener
     {
 
         @Override

@@ -2,8 +2,8 @@
 package steeringbehaviors.entities;
 
 import java.awt.Color;
-import steeringbehaviors.RunnableSim;
-import steeringbehaviors.WorldGraphics2D;
+import com.me.steeringbehaviors.RunnableSim;
+import com.me.steeringbehaviors.WorldGraphics2D;
 
 /**
  *

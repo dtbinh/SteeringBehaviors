@@ -1,11 +1,10 @@
 package steeringbehaviors.entities;
 
-import steeringbehaviors.RunnableSim;
+import com.me.steeringbehaviors.RunnableSim;
 import edu.moravian.math.Point2D;
 import edu.moravian.math.Vector2D;
 import java.awt.Color;
-import Utility.CollissionDetector;
-import steeringbehaviors.WorldGraphics2D;
+import com.me.steeringbehaviors.WorldGraphics2D;
 
 /**
  * This is an entity that responds to other entities and its own behavior.
@@ -69,12 +68,12 @@ public class Entity implements RunnableSim
      * Updates the position of the ball within the world
      */
     @Override
-    public void update()
+    public final void update()
     {
         this.location.set(this.location.scalePlus(1, velocity));
     }
 
-    public Vector2D getVelocity()
+    public final Vector2D getVelocity()
     {
         return velocity;
     }
@@ -104,11 +103,20 @@ public class Entity implements RunnableSim
         this.location = location;
     }
 
+    /**
+     * Return the location of the object (usually upper left of sprite) 
+     * @return 
+     */
     public Point2D getLocation()
     {
         return location;
     }
 
+    //TODO explain center with even object 
+    /**
+     * Gets the center point of the entity.  
+     * @return a point2D object representing the center of the entity 
+     */
     public Point2D getCenter()
     {
         return new Point2D(location.getX() + (radius), location.getY() + (radius));
