@@ -17,11 +17,10 @@ import com.me.steeringbehaviors.WorldGraphics2D;
  *
  * @author James Moore (moore.work@live.com)
  */
-public class GameOfLife implements RunnableSim
-  {
+public class GameOfLife implements RunnableSim {
 //TODO refactor board sizes;
 
-    private static final int BOARD_WIDTH = 50;
+    private static final int BOARD_WIDTH = 90;
     private static final int BOARD_HEIGHT = 50;
     private static final int STARVE_THRESHOLD = 2;
     private static final int RESURRECTION_AMOUNT = 3;
@@ -33,143 +32,119 @@ public class GameOfLife implements RunnableSim
     private GraphicsDevice device;
     private GraphicsConfiguration config;
     private BufferedImage buff;
+    private static final boolean DRAW_LINES = false;
+
 //TODO do a better world clone
-
-    protected static boolean[][] runOneStep(boolean[][] world)
-      {
-        boolean[][] nextWorld = new boolean[world.length][];
-        for (int x = 0; x < world.length; x++)
-          {
-            nextWorld[x] = new boolean[world[x].length];
-            nextWorld[x] = world[x].clone();
-          }
-
-
-
-        for (int x = 0; x < world.length; x++)
-          {
-            for (int y = 0; y < world[x].length; y++)
-              {
-
-                int ne = countLivingNeighbors(world, x, y);
-
-                if (world[x][y] == true)
-                  {
-                    if (ne < STARVE_THRESHOLD)
-                      {
-                        nextWorld[x][y] = false;
-                      }
-
-                    if (ne > OVERCROWDING_THRESHOLD)
-                      {
-                        nextWorld[x][y] = false;
-                      }
-                  }
-                else
-                  {
-                    if (ne == RESURRECTION_AMOUNT)
-                      {
-                        nextWorld[x][y] = true;
-                      }
-                  }
-              }
-          }
-        return nextWorld;
-      }
-
-    public GameOfLife()
-      {
+    
+    
+        public GameOfLife() {
         Dimension screenSize = Settings.getInstance().getResolution();
         env = GraphicsEnvironment.getLocalGraphicsEnvironment();
         device = env.getDefaultScreenDevice();
         config = device.getDefaultConfiguration();
         buff = config.createCompatibleImage(screenSize.width, screenSize.height, BufferedImage.TYPE_INT_RGB);
-      }
+    }
+    
+    
+    protected static boolean[][] runOneStep(boolean[][] world) {
 
-    public static void main(String[] args)
-      {
+        boolean[][] nextWorld = new boolean[world.length][];
+        for (int x = 0; x < world.length; x++) {
+            nextWorld[x] = new boolean[world[x].length];
+            nextWorld[x] = world[x].clone();
+        }
+
+
+
+        for (int x = 0; x < world.length; x++) {
+            for (int y = 0; y < world[x].length; y++) {
+
+                int ne = countLivingNeighbors(world, x, y);
+
+                if (world[x][y] == true) {
+                    if (ne < STARVE_THRESHOLD) {
+                        nextWorld[x][y] = false;
+                    }
+
+                    if (ne > OVERCROWDING_THRESHOLD) {
+                        nextWorld[x][y] = false;
+                    }
+                } else {
+                    if (ne == RESURRECTION_AMOUNT) {
+                        nextWorld[x][y] = true;
+                    }
+                }
+            }
+        }
+        return nextWorld;
+    }
+
+
+
+    public static void main(String[] args) {
         boolean[][] world;
         double spawnThreshhold = SPAWN_THRESHHOLD;
         world = new boolean[BOARD_WIDTH][BOARD_HEIGHT];
-        for (int x = 0; x < world.length; x++)
-          {
-            for (int y = 0; y < world[x].length; y++)
-              {
-                if (Math.random() > spawnThreshhold)
-                  {
+        for (int x = 0; x < world.length; x++) {
+            for (int y = 0; y < world[x].length; y++) {
+                if (Math.random() > spawnThreshhold) {
                     world[x][y] = true;
-                  }
-              }
-          }
+                }
+            }
+        }
 
         outputBoard(world);
 
         int iters = runGame(world, true);
-      }
+    }
 
-    protected static void outputBoard(boolean[][] world)
-      {
+    protected static void outputBoard(boolean[][] world) {
         String rep;
-        for (int i = 0; i < world.length; i++)
-          {
-            for (int j = 0; j < world[i].length; j++)
-              {
-                if (world[i][j] == true)
-                  {
+        for (int i = 0; i < world.length; i++) {
+            for (int j = 0; j < world[i].length; j++) {
+                if (world[i][j] == true) {
                     rep = "*";
-                  }
-                else
-                  {
+                } else {
                     //rep = '█';
                     rep = String.valueOf(countLivingNeighbors(world, i, j));
-                  }
+                }
                 System.out.printf("%-10s", i + "," + j + ": " + rep);
-              }
+            }
             System.out.println("");
-          }
+        }
         System.out.println("-----------------------------------");
-      }
+    }
 
-    private static int runGame(boolean[][] world_in, boolean b)
-      {
+    private static int runGame(boolean[][] world_in, boolean b) {
         int iterations = 0;
         boolean[][] world = world_in.clone();
         boolean[][] nextWorld = world_in.clone();
         boolean output = true;
-        while (isBoardDead(world) == false && iterations < ITERATION_COUNT)
-          {
+        while (isBoardDead(world) == false && iterations < ITERATION_COUNT) {
             world = runOneStep(world);
-            if (output == true)
-              {
+            if (output == true) {
                 outputBoard(world);
-              }
+            }
             iterations += 1;
-          }
+        }
         return iterations;
-      }
+    }
 
-    private static boolean[][] generateBoard()
-      {
-        boolean[][] board = new boolean[BOARD_WIDTH][BOARD_HEIGHT];
-        for (int i = 0; i < BOARD_HEIGHT; i++)
-          {
-            for (int j = 0; j < BOARD_WIDTH; j++)
-              {
-                if (Math.random() > SPAWN_THRESHHOLD)
-                  {
-                    board[i][j] = true;
-                  }
-                else
-                  {
-                    board[i][j] = false;
-                  }
-              }
-          }
-        return board;
-      }
+    private static boolean[][] generateBoard() {
+        boolean[][] board_in = new boolean[BOARD_WIDTH][BOARD_HEIGHT];
+        for (int i = 0; i < BOARD_HEIGHT; i++) {
+            for (int j = 0; j < BOARD_WIDTH; j++) {
+                if (Math.random() > SPAWN_THRESHHOLD) {
+                    board_in[j][i] = true;
+                } else {
+                    board_in[j][i] = false;
+                }
+            }
+        }
+        return board_in;
+    }
 
-    protected static int countLivingNeighbors(boolean[][] world, int x, int y)
-      {
+    protected static int countLivingNeighbors(boolean[][] world, int x, int y) {
 
         int count = 0;
         int xL = x - 1;
@@ -178,158 +153,119 @@ public class GameOfLife implements RunnableSim
         int yU = y + 1;
 
         int len = world.length;
-        if (withinXBoundries(xL, world.length))
-          {
+        if (withinBoundries(xL, world.length)) {
             count += accountFor(world[xL][y]);
-            if (withinYBoundries(y, world[xL].length))
-              {
+            if (withinBoundries(y, world[xL].length)) {
                 count += accountFor(world[xL][yU]);
-              }
-            if (withinYBoundries(yD, world[xL].length))
-              {
+            }
+            if (withinBoundries(yD, world[xL].length)) {
                 count += accountFor(world[xL][yD]);
-              }
-          }
+            }
+        }
 
-        if (withinXBoundries(xR, len))
-          {
+        if (withinBoundries(xR, world[x].length)) {
             count += accountFor(world[xR][y]);
-            if (withinYBoundries(yU, len))
-              {
+            if (withinBoundries(yU, world[x].length)) {
                 count += accountFor(world[xR][yU]);
-              }
-            if (withinYBoundries(yD, len))
-              {
+            }
+            if (withinBoundries(yD, world[x].length)) {
                 count += accountFor(world[xR][yD]);
-              }
-          }
+            }
+        }
 
-        if (withinYBoundries(yU, world[x].length))
-          {
+        if (withinBoundries(yU, world[x].length)) {
             count += accountFor(world[x][yU]);
-          }
+        }
 
-        if (withinYBoundries(yD, world[x].length))
-          {
+        if (withinBoundries(yD, world[x].length)) {
             count += accountFor(world[x][yD]);
-          }
+        }
 
         return count;
-      }
+    }
 
-    private static boolean withinXBoundries(int x, int upperBound)
-      {
-        boolean withinXLeft = x == Math.abs(x);
-        boolean withinYRight = x < (upperBound - 1);
+    private static boolean withinBoundries(int num, int upperBound) {
+        boolean withinLeft = num == Math.abs(num);
+        boolean withinRight = num < (upperBound - 1);
 
-        return withinXLeft && withinYRight;
-      }
+        return withinLeft && withinRight;
+    }
 
-    private static boolean withinYBoundries(int y, int upperBound)
-      {
-        boolean withinYLeft = y == Math.abs(y);
-        boolean withinYRight = y < (upperBound - 1);
 
-        return withinYLeft && withinYRight;
-      }
-
-    private static int accountFor(boolean board)
-      {
-        if (board == true)
-          {
+    private static int accountFor(boolean board) {
+        if (board == true) {
             return 1;
-          }
-        else
-          {
+        } else {
             return 0;
-          }
-      }
+        }
+    }
 
-    protected static boolean isBoardDead(boolean[][] world)
-      {
+    protected static boolean isBoardDead(boolean[][] world) {
         boolean status = true;
-        for (int x = 0; x < world.length; x++)
-          {
-            for (int y = 0; y < world[x].length; y++)
-              {
-                if (world[x][y] == true)
-                  {
+        for (int x = 0; x < world.length; x++) {
+            for (int y = 0; y < world[x].length; y++) {
+                if (world[x][y] == true) {
                     status = false;
                     break;
-                  }
-              }
-          }
+                }
+            }
+        }
         return status;
-      }
+    }
 
     @Override
-    public void draw(WorldGraphics2D w2d)
-      {
+    public void draw(WorldGraphics2D w2d) {
         Dimension res = w2d.getRes();
 
         int yOffset = (int) (res.height / (double) BOARD_HEIGHT);
         int xOffset = (int) (res.width / (double) BOARD_WIDTH);
 
-        if (board == null)
-          {
+        int xSideOffset = xOffset % res.width;
+        if (board == null) {
             board = generateBoard();
-          }
+        }
         board = runOneStep(board);
 
-        for (int i = 0; i < BOARD_WIDTH; i++)
-          {
+        for (int i = 0; i < BOARD_WIDTH; i++) {
 
-
-
-            for (int j = 0; j < BOARD_HEIGHT; j++)
-              {
+            for (int j = 0; j < BOARD_HEIGHT; j++) {
                 Color renderColor;
 
-                if (board[i][j])
-                  {
+                if (board[i][j]) {
                     renderColor = Color.blue;
-                  }
-                else
-                  {
+                } else {
                     renderColor = Color.white;
-                  }
+                }
 
-                w2d.drawRectangle(new Point2D(i * xOffset, 0), new Dimension(1, res.height + yOffset), Color.black);
-                w2d.drawRectangle(new Point2D(0, j * yOffset), new Dimension(res.width + xOffset, 1), Color.black);
+                if (DRAW_LINES) {
+                    w2d.drawRectangle(new Point2D(i * xOffset, 0), new Dimension(1, res.height + yOffset), Color.black);
+                    w2d.drawRectangle(new Point2D(0, j * yOffset), new Dimension(res.width + xOffset, 1), Color.black);
+                }
 
-
-
-                w2d.drawRectangle(new Point2D(i * xOffset, j * yOffset), new Dimension(xOffset, yOffset), renderColor);
-              }
-          }
-        try
-          {
+                w2d.drawRectangle(new Point2D(i * xOffset + xSideOffset, j * yOffset), new Dimension(xOffset, yOffset), renderColor);
+            }
+        }
+        
+        try {
             Thread.sleep(500);
-          }
-        catch (InterruptedException ex)
-          {
+        } catch (InterruptedException ex) {
             Logger.getLogger(GameOfLife.class.getName()).log(Level.SEVERE, null, ex);
-          }
-      }
+        }
+    }
 
     @Override
-    public void update()
-      {
-      }
+    public void update() {
+    }
 
-    private static boolean[][] cloneBoard(boolean[][] board)
-      {
+    private static boolean[][] cloneBoard(boolean[][] board) {
         boolean[][] newBoard = new boolean[board.length][];
 
-        for (int x = 0; x < board.length; x++)
-          {
+        for (int x = 0; x < board.length; x++) {
             boolean[] src = board[x];
             boolean[] recp = new boolean[src.length];
             System.arraycopy(src, 0, recp, 0, src.length);
-          }
-
-
+        }
         return newBoard;
-      }
-  }
+    }
+}
 //TODO do better unit testing
