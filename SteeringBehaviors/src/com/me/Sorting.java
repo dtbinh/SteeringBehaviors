@@ -21,65 +21,95 @@ import java.util.logging.Logger;
  *
  * @author Bryan
  */
-public class Sorting implements com.me.steeringbehaviors.RunnableSim {
+public class Sorting implements com.me.steeringbehaviors.RunnableSim
+{
 
     private static List<Integer> elements;
-    private static final int NUM_ELEMENTS = 200;
+    private static List<Integer> elements2;
+    private static final int NUM_ELEMENTS = 80;
+    private static  int index = 0;
 
-    public Sorting() {
+    public Sorting()
+    {
         elements = new ArrayList<Integer>();
+        elements2 = new ArrayList<Integer>();
         Random r = new Random();
-        for (int i = 0; i < NUM_ELEMENTS; i++) {
+        for (int i = 0; i < NUM_ELEMENTS; i++)
+        {
             elements.add(r.nextInt(100));
+            elements2.add(r.nextInt(100));
         }
+        
+        index = elements.size() - 1;
     }
 
     @Override
-    public void draw(WorldGraphics2D w2d) {
+    public void draw(WorldGraphics2D w2d)
+    {
         Dimension res = Settings.getInstance().getResolution();
         int offset = 10;
-        for (int i = 0; i < NUM_ELEMENTS; i++) {
+        for (int i = 0; i < NUM_ELEMENTS; i++)
+        {
             w2d.drawRectangle(new Point2D(i * offset, 600), new Dimension(10, 2 * elements.get(i)), Color.blue);
+            w2d.drawRectangle(new Point2D(i * offset, 300), new Dimension(10, 2 * elements2.get(i)), Color.red);
+            
         }
 
     }
 
     @Override
-    public void update() {
-        try {
+    public void update()
+    {
+        try
+        {
 
-            this.runOneBubbleSort(elements);
+            this.runOneStepSelectionSortt(elements, index);
+            this.runOneBubbleSort(elements2);
+            index = index -1;
             Thread.sleep(100);
 
-            if (this.isUnSorted(elements)) {
+            if (this.isUnSorted(elements)&&this.isUnSorted(elements2))
+            {
                 System.exit(0);
             }
-        } catch (InterruptedException ex) {
+        }
+        catch (InterruptedException ex)
+        {
             Logger.getLogger(Sorting.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public List<Integer> selectionSortComplete(List<Integer> sortee) {
-        while (isUnSorted(sortee)) {
-            selectionSortComplete(sortee);
+    public List<Integer> selectionSortComplete(List<Integer> sortee)
+    {
+        int index = sortee.size() - 1;
+        while (isUnSorted(sortee))
+        {
+            runOneStepSelectionSortt(sortee, index);
+            index -= 1;
         }
         return sortee;
     }
 
-    public List<Integer> bubbleSortComplete(List<Integer> sortee) {
-        while (isUnSorted(sortee)) {
+    public List<Integer> bubbleSortComplete(List<Integer> sortee)
+    {
+        while (isUnSorted(sortee))
+        {
             runOneBubbleSort(sortee);
         }
         return sortee;
     }
 
-    private boolean isUnSorted(List<Integer> sortee) {
-        if (sortee.size() < 2) {
+    private boolean isUnSorted(List<Integer> sortee)
+    {
+        if (sortee.size() < 2)
+        {
             return true;
         }
 
-        for (int i = 1; i < sortee.size(); i++) {
-            if (sortee.get(i - 1) > sortee.get(i)) {
+        for (int i = 1; i < sortee.size(); i++)
+        {
+            if (sortee.get(i - 1) > sortee.get(i))
+            {
                 return false;
             }
 
@@ -87,13 +117,17 @@ public class Sorting implements com.me.steeringbehaviors.RunnableSim {
         return true;
     }
 
-    private void runOneBubbleSort(List<Integer> sortee) {
+    private void runOneBubbleSort(List<Integer> sortee)
+    {
 
-        if (sortee.size() < 1) {
+        if (sortee.size() < 1)
+        {
             System.out.println("Sortee is rather small");
         }
-        for (int i = 1; i < sortee.size(); i++) {
-            if (sortee.get(i) < sortee.get(i - 1)) {
+        for (int i = 1; i < sortee.size(); i++)
+        {
+            if (sortee.get(i) < sortee.get(i - 1))
+            {
 
                 Collections.swap(sortee, i, i - 1);
             }
@@ -102,11 +136,29 @@ public class Sorting implements com.me.steeringbehaviors.RunnableSim {
 
     }
 
-    public static List<Integer> getElements() {
+    public static List<Integer> getElements()
+    {
         return elements;
     }
 
-    private void runOneStepSelectionSortt(List<Integer> sortee) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void runOneStepSelectionSortt(List<Integer> sortee, int index)
+    {
+        int currMaxIndex = 0;
+
+        if (sortee.size() < 1)
+        {
+            System.out.println("Sortee is rather small");
+        }
+
+        for (int i = 0; i <= index; i++)
+        {
+            if (sortee.get(i) > sortee.get(currMaxIndex))
+            {
+                currMaxIndex = i;
+            }
+        }
+        Collections.swap(sortee, currMaxIndex, index);
     }
+    
+    
 }
