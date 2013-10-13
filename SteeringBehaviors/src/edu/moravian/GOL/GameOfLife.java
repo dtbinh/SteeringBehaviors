@@ -25,7 +25,7 @@ public class GameOfLife implements RunnableSim {
     private static final int STARVE_THRESHOLD = 2;
     private static final int RESURRECTION_AMOUNT = 3;
     private static final int OVERCROWDING_THRESHOLD = 3;
-    private static final double SPAWN_THRESHHOLD = .8;
+    private static final double SPAWN_THRESHHOLD = .4;
     private static final int ITERATION_COUNT = 1000;
     private static boolean[][] board;
     private GraphicsEnvironment env;
@@ -234,7 +234,7 @@ public class GameOfLife implements RunnableSim {
                 if (board[i][j]) {
                     renderColor = Color.blue;
                 } else {
-                    renderColor = Color.white;
+                    renderColor = Color.lightGray;
                 }
 
                 if (DRAW_LINES) {
