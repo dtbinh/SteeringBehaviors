@@ -187,14 +187,12 @@ public class Sorting implements com.me.steeringbehaviors.RunnableSim
     protected List<Integer> runOneStepInsertionSort(List<Integer> sortee, int index)
     {
         int currMaxIndex = 0;
-        
-        
+                
         if (sortee.size() < 1)
         {
             System.out.println("Sortee is rather small");
         }
-//TODO do this correctly 
-//6, 5, 3, 1, 8, 7, 2, 4        
+      
         int val = sortee.get(index);
         for (int i = sortee.size() - 1; i > index; i--)
         {

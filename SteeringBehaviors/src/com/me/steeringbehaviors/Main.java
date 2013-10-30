@@ -5,25 +5,13 @@ import java.io.FileNotFoundException;
 import javax.imageio.IIOException;
 
 /**
+ * Mother freaking art
  *
  * @author James Moore (moore.work@live.com)
  */
 public class Main
   {
-    
-        //TODO clean here
-    //TODO resolution manager class? 
     private static final int DBITDEPTH = 32;
-    //private static final int DEFAULT_WIDTH = 800;
-    //private static final int DEFAULT_HEIGHT = 600;
-/**
- * No need to allow you cheeky bastards to instantiate this
- */
-    private Main()
-      {
-      }
-    
-
 
     /**
      * Runs the game!
@@ -36,9 +24,9 @@ public class Main
       {
 
         int defaultWidth;
-        //= DEFAULT_WIDTH;
+
         int defaultHeight;
-        //= DEFAULT_HEIGHT;
+
         // Create our game with a world size equal to
         // the screen size
 
@@ -65,3 +53,4 @@ public class Main
       }
   }
 //TODO framerate smoothing
+
