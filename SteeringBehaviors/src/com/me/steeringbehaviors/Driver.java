@@ -2,6 +2,8 @@ package com.me.steeringbehaviors;
 
 import com.me.Sorting;
 import edu.moravian.GOL.GameOfLife;
+import edu.moravian.GOL.NoDieGameOfLife;
+import edu.moravian.GOL.VanillaGameOfLife;
 import edu.moravian.math.Point2D;
 import edu.moravian.math.Vector2D;
 import java.awt.Color;
@@ -45,7 +47,7 @@ public class Driver extends JFrame implements Simulation, KeyListener
         firstSet = new LinkedList<RunnableSim>();
         //EntityManager.getInstance();
         //firstSet.add(new MandelBrot());
-        firstSet.add(new GameOfLife());
+        firstSet.add(new NoDieGameOfLife());
      //   firstSet.add(new Sorting());
         set = Settings.getInstance();
         

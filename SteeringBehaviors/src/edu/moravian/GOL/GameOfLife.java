@@ -17,15 +17,16 @@ import com.me.steeringbehaviors.WorldGraphics2D;
  *
  * @author James Moore (moore.work@live.com)
  */
-public class GameOfLife implements RunnableSim {
+public abstract class GameOfLife implements RunnableSim {
 //TODO refactor board sizes;
 
     private static final int BOARD_WIDTH = 90;
     private static final int BOARD_HEIGHT = 50;
-    private static final int STARVE_THRESHOLD = 2;
-    private static final int RESURRECTION_AMOUNT = 3;
-    private static final int OVERCROWDING_THRESHOLD = 3;
-    private static final double SPAWN_THRESHHOLD = .4;
+    protected static final int STARVE_THRESHOLD = 2;
+    protected static final int RESURRECTION_AMOUNT = 3;
+    protected static final int OVERCROWDING_THRESHOLD = 3;
+    //TODO esablish this
+    protected static final double SPAWN_THRESHHOLD = .9;
     private static final int ITERATION_COUNT = 1000;
     private static boolean[][] board;
     private GraphicsEnvironment env;
@@ -46,57 +47,26 @@ public class GameOfLife implements RunnableSim {
     }
     
     
-    protected static boolean[][] runOneStep(boolean[][] world) {
-
-        boolean[][] nextWorld = new boolean[world.length][];
-        for (int x = 0; x < world.length; x++) {
-            nextWorld[x] = new boolean[world[x].length];
-            nextWorld[x] = world[x].clone();
-        }
+    protected abstract boolean[][] runOneStep(boolean[][] world);
 
 
 
-        for (int x = 0; x < world.length; x++) {
-            for (int y = 0; y < world[x].length; y++) {
-
-                int ne = countLivingNeighbors(world, x, y);
-
-                if (world[x][y] == true) {
-                    if (ne < STARVE_THRESHOLD) {
-                        nextWorld[x][y] = false;
-                    }
-
-                    if (ne > OVERCROWDING_THRESHOLD) {
-                        nextWorld[x][y] = false;
-                    }
-                } else {
-                    if (ne == RESURRECTION_AMOUNT) {
-                        nextWorld[x][y] = true;
-                    }
-                }
-            }
-        }
-        return nextWorld;
-    }
-
-
-
-    public static void main(String[] args) {
-        boolean[][] world;
-        double spawnThreshhold = SPAWN_THRESHHOLD;
-        world = new boolean[BOARD_WIDTH][BOARD_HEIGHT];
-        for (int x = 0; x < world.length; x++) {
-            for (int y = 0; y < world[x].length; y++) {
-                if (Math.random() > spawnThreshhold) {
-                    world[x][y] = true;
-                }
-            }
-        }
-
-        outputBoard(world);
-
-        int iters = runGame(world, true);
-    }
+//    public  void main(String[] args) {
+//        boolean[][] world;
+//        double spawnThreshhold = SPAWN_THRESHHOLD;
+//        world = new boolean[BOARD_WIDTH][BOARD_HEIGHT];
+//        for (int x = 0; x < world.length; x++) {
+//            for (int y = 0; y < world[x].length; y++) {
+//                if (Math.random() > spawnThreshhold) {
+//                    world[x][y] = true;
+//                }
+//            }
+//        }
+//
+//        outputBoard(world);
+//
+//        int iters = runGame(world, true);
+//    }
 
     protected static void outputBoard(boolean[][] world) {
         String rep;
@@ -115,13 +85,13 @@ public class GameOfLife implements RunnableSim {
         System.out.println("-----------------------------------");
     }
 
-    private static int runGame(boolean[][] world_in, boolean b) {
+    private  int runGame(boolean[][] world_in, boolean b) {
         int iterations = 0;
         boolean[][] world = world_in.clone();
         boolean[][] nextWorld = world_in.clone();
         boolean output = true;
         while (isBoardDead(world) == false && iterations < ITERATION_COUNT) {
-            world = runOneStep(world);
+            world = this.runOneStep(world);
             if (output == true) {
                 outputBoard(world);
             }
