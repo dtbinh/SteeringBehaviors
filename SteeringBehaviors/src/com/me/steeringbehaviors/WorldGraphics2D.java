@@ -52,11 +52,6 @@ public class WorldGraphics2D
         dim = set.getResolution();
 
         imageCount = 0;
-
-        System.out.println("wtf");
-
-
-
       }
 
     public void setColor(Color background)
@@ -180,14 +175,12 @@ public class WorldGraphics2D
 
     public void render()
       {
-        imageCount++;
-
         try
           {
-            ImageIO.write(writeImage, "PNG", new File("img\\"+System.currentTimeMillis() + ".png"));
+            ImageIO.write(writeImage, "PNG", new File("img" + File.separator + Settings.getInstance().getNumber() + ".png"));
             try
               {
-                Thread.sleep(2);
+                Thread.sleep(1);
               }
             catch (InterruptedException ex)
               {

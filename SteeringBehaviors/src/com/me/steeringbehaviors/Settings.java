@@ -15,6 +15,7 @@ public class Settings
     private final static Dimension worldSize = new Dimension(2000,1000);
     private static final int RADIUS_SCALE_CONST = 10;
     private Dimension res;
+    private static int num;
 
     private Settings()
     {
@@ -77,4 +78,10 @@ public class Settings
     {
         return worldSize;
     }
+
+    public int getNumber()
+      {
+        num += 1;
+        return num;
+      }
 }
