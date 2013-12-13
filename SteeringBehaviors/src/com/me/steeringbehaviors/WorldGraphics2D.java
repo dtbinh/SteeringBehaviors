@@ -22,17 +22,27 @@ import javax.imageio.ImageIO;
 public class WorldGraphics2D
   {
 
-    Graphics2D g2d;
-    Graphics graphicsWright;
-    BufferedImage writeImage;
-    CoordinateTranslator trans;
-    Settings set = Settings.getInstance();
-    Dimension dim;
+    private Graphics2D g2d;
+    private BufferedImage writeImage;
+    private CoordinateTranslator trans;
+    private Settings set = Settings.getInstance();
+    private Dimension dim;
     private int imageCount;
+    private static final boolean OUTPUT = true;
 
     public WorldGraphics2D(Graphics g)
       {
-        this.g2d = (Graphics2D) g;
+        writeImage = new BufferedImage(set.getResolution().width, set.getResolution().height, BufferedImage.TYPE_INT_RGB);
+
+        if (OUTPUT == false)
+          {
+            this.g2d = (Graphics2D) g;
+          }
+        else
+          {
+            this.g2d = writeImage
+                    .createGraphics();
+          }
         trans = new CoordinateTranslator(
                 set.getResolution().width,
                 set.getResolution().height,
@@ -43,16 +53,15 @@ public class WorldGraphics2D
 
         imageCount = 0;
 
-          System.out.println("wtf");
-        
-        writeImage = new BufferedImage(set.getResolution().width, set.getResolution().height, BufferedImage.TYPE_INT_RGB);
-        graphicsWright = writeImage.createGraphics();
+        System.out.println("wtf");
+
+
+
       }
 
     public void setColor(Color background)
       {
         g2d.setColor(background);
-        graphicsWright.setColor(background);
       }
 
     void fillRect(Point2D location, int worldWidth, int worldHeight)
@@ -95,8 +104,6 @@ public class WorldGraphics2D
     void fillRect(int i, int i0, int worldWidth, int worldHeight)
       {
         g2d.fillRect(i, i0, worldWidth, worldHeight);
-        graphicsWright.fillRect(i, i0, worldWidth, worldHeight);
-
       }
 
     void drawString(String string, int i, int i0)
@@ -164,11 +171,6 @@ public class WorldGraphics2D
         g2d.setColor(col);
         g2d.fillRect((int) upperLeftCorner.getX(), (int) upperLeftCorner.getY(), size.width, size.height);
         g2d.setColor(old);
-
-        graphicsWright.setColor(col);
-        graphicsWright.fillRect((int) upperLeftCorner.getX(), (int) upperLeftCorner.getY(), size.width, size.height);
-        graphicsWright.setColor(old);
-
       }
 
     public Dimension getRes()
@@ -182,15 +184,15 @@ public class WorldGraphics2D
 
         try
           {
-            ImageIO.write(writeImage, "PNG", new File(System.currentTimeMillis() + ".png"));
-              try
-                {
-                  Thread.sleep(2);
-                }
-              catch (InterruptedException ex)
-                {
-                  Logger.getLogger(WorldGraphics2D.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            ImageIO.write(writeImage, "PNG", new File("img\\"+System.currentTimeMillis() + ".png"));
+            try
+              {
+                Thread.sleep(2);
+              }
+            catch (InterruptedException ex)
+              {
+                Logger.getLogger(WorldGraphics2D.class.getName()).log(Level.SEVERE, null, ex);
+              }
           }
         catch (IOException ex)
           {

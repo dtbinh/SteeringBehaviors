@@ -45,8 +45,8 @@ public class Driver extends JFrame implements Simulation, KeyListener
         firstSet = new LinkedList<RunnableSim>();
         //EntityManager.getInstance();
         //firstSet.add(new MandelBrot());
-        //firstSet.add(new GameOfLife());
-        firstSet.add(new Sorting());
+        firstSet.add(new GameOfLife());
+     //   firstSet.add(new Sorting());
         set = Settings.getInstance();
         
         endgameMet = false;
