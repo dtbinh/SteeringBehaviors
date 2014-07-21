@@ -20,8 +20,8 @@ import com.me.steeringbehaviors.WorldGraphics2D;
 public class GameOfLife implements RunnableSim {
 //TODO refactor board sizes;
 
-    private static final int BOARD_WIDTH = 90;
-    private static final int BOARD_HEIGHT = 50;
+    private static final int BOARD_WIDTH = 40;
+    private static final int BOARD_HEIGHT = 20;
     private static final int STARVE_THRESHOLD = 2;
     private static final int RESURRECTION_AMOUNT = 3;
     private static final int OVERCROWDING_THRESHOLD = 3;
@@ -32,7 +32,7 @@ public class GameOfLife implements RunnableSim {
     private GraphicsDevice device;
     private GraphicsConfiguration config;
     private BufferedImage buff;
-    private static final boolean DRAW_LINES = false;
+    private static final boolean DRAW_LINES = true;
 
 //TODO do a better world clone
     

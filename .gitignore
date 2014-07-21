@@ -2,3 +2,8 @@
 /SteeringBehaviors/build/
 SteeringBehaviors/saved2.png
 /SteeringBehaviors/dist/
+.DS_Store
+
+SteeringBehaviors/.DS_Store
+
+*.png
