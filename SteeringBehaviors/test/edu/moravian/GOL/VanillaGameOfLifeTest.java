@@ -11,14 +11,14 @@ import static org.junit.Assert.*;
  *
  * @author Bryan
  */
-public class GameOfLifeTest
+public class VanillaGameOfLifeTest
   {
 
     GameOfLife gol;
 
-    public GameOfLifeTest()
+    public VanillaGameOfLifeTest()
       {
-        gol = new GameOfLife();
+        gol = new VanillaGameOfLife();
       }
 
     @Test
@@ -34,7 +34,7 @@ public class GameOfLifeTest
           }
         board[2][2] = true;
 
-        board = GameOfLife.runOneStep(board);
+        board = gol.runOneStep(board);
 
         assertTrue(GameOfLife.isBoardDead(board));
 
@@ -179,7 +179,7 @@ public class GameOfLifeTest
           }
         board[1][1] = true;
 
-        board = GameOfLife.runOneStep(board);
+        board = gol.runOneStep(board);
         assertTrue(GameOfLife.isBoardDead(board));
       }
 
@@ -197,7 +197,7 @@ public class GameOfLifeTest
         board[1][1] = true;
         board[4][4] = true;
 
-        board = GameOfLife.runOneStep(board);
+        board = gol.runOneStep(board);
         assertTrue(GameOfLife.isBoardDead(board));
       }
 
@@ -217,7 +217,7 @@ public class GameOfLifeTest
         board[1][3] = true;
         // GameOfLife.outputBoard(board);
 
-        board = GameOfLife.runOneStep(board);
+        board = gol.runOneStep(board);
 
         assertFalse(GameOfLife.isBoardDead(board));
 
@@ -236,7 +236,7 @@ public class GameOfLifeTest
               }
           }
 
-        board = GameOfLife.runOneStep(board);
+        board = gol.runOneStep(board);
 
         assertTrue(GameOfLife.isBoardDead(board));
       }

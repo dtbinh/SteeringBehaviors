@@ -28,7 +28,7 @@ public class WorldGraphics2D
     private Settings set = Settings.getInstance();
     private Dimension dim;
     private int imageCount;
-    private static final boolean OUTPUT = true;
+    private static final boolean OUTPUT = false;
 
     public WorldGraphics2D(Graphics g)
       {
