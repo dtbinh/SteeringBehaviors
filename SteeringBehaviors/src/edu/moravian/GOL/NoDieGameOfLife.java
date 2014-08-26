@@ -10,9 +10,7 @@ public class NoDieGameOfLife extends GameOfLife
   {
 
 
-    
-    
-    @Override
+
     protected boolean[][] runOneStep(boolean[][] world)
       {
         boolean[][] nextWorld = new boolean[world.length][];

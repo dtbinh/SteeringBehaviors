@@ -22,9 +22,9 @@ public class GameOfLife implements RunnableSim {
 
     private static final int BOARD_WIDTH = 40;
     private static final int BOARD_HEIGHT = 20;
-    private static final int STARVE_THRESHOLD = 2;
-    private static final int RESURRECTION_AMOUNT = 3;
-    private static final int OVERCROWDING_THRESHOLD = 3;
+    static final int STARVE_THRESHOLD = 2;
+    static final int RESURRECTION_AMOUNT = 3;
+    static final int OVERCROWDING_THRESHOLD = 3;
     private static final double SPAWN_THRESHHOLD = .4;
     private static final int ITERATION_COUNT = 1000;
     private static boolean[][] board;
@@ -46,7 +46,7 @@ public class GameOfLife implements RunnableSim {
     }
     
     
-    protected static boolean[][] runOneStep(boolean[][] world) {
+    protected  boolean[][] runOneStep(boolean[][] world) {
 
         boolean[][] nextWorld = new boolean[world.length][];
         for (int x = 0; x < world.length; x++) {
@@ -116,12 +116,13 @@ public class GameOfLife implements RunnableSim {
     }
 
     private static int runGame(boolean[][] world_in, boolean b) {
+        GameOfLife gol = new GameOfLife();
         int iterations = 0;
         boolean[][] world = world_in.clone();
         boolean[][] nextWorld = world_in.clone();
         boolean output = true;
         while (isBoardDead(world) == false && iterations < ITERATION_COUNT) {
-            world = runOneStep(world);
+            world = gol.runOneStep(world);
             if (output == true) {
                 outputBoard(world);
             }
