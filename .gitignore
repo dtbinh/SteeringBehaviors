@@ -3,7 +3,8 @@
 SteeringBehaviors/saved2.png
 /SteeringBehaviors/dist/
 .DS_Store
-/.metadata 
+/.metadata
+/metadata
 SteeringBehaviors/.DS_Store
 
 *.png
