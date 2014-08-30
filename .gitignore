@@ -8,5 +8,4 @@ SteeringBehaviors/saved2.png
 SteeringBehaviors/.DS_Store
 
 *.png
-
-*.png
+*.class
