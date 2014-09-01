@@ -20,8 +20,8 @@ import com.me.steeringbehaviors.WorldGraphics2D;
 public class GameOfLife implements RunnableSim {
 //TODO refactor board sizes;
 
-    private static final int BOARD_WIDTH = 40;
-    private static final int BOARD_HEIGHT = 20;
+    private static final int BOARD_WIDTH = 400;
+    private static final int BOARD_HEIGHT = 220;
     static final int STARVE_THRESHOLD = 2;
     static final int RESURRECTION_AMOUNT = 3;
     static final int OVERCROWDING_THRESHOLD = 3;
@@ -221,10 +221,11 @@ public class GameOfLife implements RunnableSim {
         int yOffset = (int) (res.height / (double) BOARD_HEIGHT);
         int xOffset = (int) (res.width / (double) BOARD_WIDTH);
 
-        int xSideOffset = xOffset % res.width;
+        int xSideOffset = res.width / BOARD_WIDTH;
         if (board == null) {
             board = generateBoard();
         }
+        
         board = runOneStep(board);
 
         for (int i = 0; i < BOARD_WIDTH; i++) {
@@ -239,11 +240,11 @@ public class GameOfLife implements RunnableSim {
                 }
 
                 if (DRAW_LINES) {
-                    w2d.drawRectangle(new Point2D(i * xOffset, 0), new Dimension(1, res.height + yOffset), Color.black);
-                    w2d.drawRectangle(new Point2D(0, j * yOffset), new Dimension(res.width + xOffset, 1), Color.black);
+                  //  w2d.drawRectangle(new Point2D(i * xOffset, 0), new Dimension(1, res.height + yOffset), Color.black);
+                   // w2d.drawRectangle(new Point2D(0, j * yOffset), new Dimension(res.width + xOffset, 1), Color.black);
                 }
 
-                w2d.drawRectangle(new Point2D(i * xOffset + xSideOffset, j * yOffset), new Dimension(xOffset, yOffset), renderColor);
+                 w2d.drawRectangle(new Point2D(i * xOffset + xSideOffset, j * yOffset), new Dimension(xOffset, yOffset), renderColor);
             }
         }
         

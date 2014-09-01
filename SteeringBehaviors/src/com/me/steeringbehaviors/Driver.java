@@ -47,7 +47,8 @@ public class Driver extends JFrame implements Simulation, KeyListener
         firstSet = new LinkedList<RunnableSim>();
         //EntityManager.getInstance();
         //firstSet.add(new MandelBrot());
-        firstSet.add(new NoDieGameOfLife());
+        //firstSet.add(new NoDieGameOfLife());
+        firstSet.add(new GameOfLife());
      //   firstSet.add(new Sorting());
         set = Settings.getInstance();
         
@@ -106,7 +107,7 @@ public class Driver extends JFrame implements Simulation, KeyListener
         for (RunnableSim a : firstSet)
         {
             a.draw(g2d);
-            g2d.render();
+          //  g2d.render();
         }
         //g2d.drawTrangle(new Point2D(100,100), new Vector2D(1,0));
         //  System.out.println(new Vector2D(1,0).angle());
