@@ -4,12 +4,16 @@
  */
 package com.me;
 
+import com.me.steeringbehaviors.WorldGraphics2D;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.BeforeClass;
 
 /**
  *
@@ -24,6 +28,14 @@ public class SortingTest {
         sort = new Sorting();
     }
 
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+
     @Before
     public void setUp() {
         //65318724
@@ -31,6 +43,10 @@ public class SortingTest {
             6, 5, 3, 1, 8, 7, 4
         };
         elements = new ArrayList<Integer>(Arrays.asList(els));
+    }
+
+    @After
+    public void tearDown() throws Exception {
     }
 
     @Test
@@ -118,5 +134,147 @@ public class SortingTest {
 
         assertTrue(twoArraysSame(elsCorrect, elements));
 
+    }
+
+    /**
+     * Test of draw method, of class Sorting.
+     */
+    @Test
+    public void testDraw() {
+        System.out.println("draw");
+        WorldGraphics2D w2d = null;
+        Sorting instance = new Sorting();
+        instance.draw(w2d);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of update method, of class Sorting.
+     */
+    @Test
+    public void testUpdate() {
+        System.out.println("update");
+        Sorting instance = new Sorting();
+        instance.update();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of selectionSortComplete method, of class Sorting.
+     */
+    @Test
+    public void testSelectionSortComplete() {
+        System.out.println("selectionSortComplete");
+        List<Integer> sortee = null;
+        Sorting instance = new Sorting();
+        List<Integer> expResult = null;
+        List<Integer> result = instance.selectionSortComplete(sortee);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of bubbleSortComplete method, of class Sorting.
+     */
+    @Test
+    public void testBubbleSortComplete() {
+        System.out.println("bubbleSortComplete");
+        List<Integer> sortee = null;
+        Sorting instance = new Sorting();
+        List<Integer> expResult = null;
+        List<Integer> result = instance.bubbleSortComplete(sortee);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of runOneBubbleSort method, of class Sorting.
+     */
+    @Test
+    public void testRunOneBubbleSort() {
+        System.out.println("runOneBubbleSort");
+        List<Integer> sortee = null;
+        Sorting instance = new Sorting();
+        instance.runOneBubbleSort(sortee);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getElements method, of class Sorting.
+     */
+    @Test
+    public void testGetElements() {
+        System.out.println("getElements");
+        List<Integer> expResult = null;
+        List<Integer> result = Sorting.getElements();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of runOneStepSelectionSort method, of class Sorting.
+     */
+    @Test
+    public void testRunOneStepSelectionSort() {
+        System.out.println("runOneStepSelectionSort");
+        List<Integer> sortee = null;
+        int index = 0;
+        Sorting instance = new Sorting();
+        instance.runOneStepSelectionSort(sortee, index);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of runFullInsertionSort method, of class Sorting.
+     */
+    @Test
+    public void testRunFullInsertionSort() {
+        System.out.println("runFullInsertionSort");
+        List<Integer> sortee = null;
+        Sorting instance = new Sorting();
+        List<Integer> expResult = null;
+        List<Integer> result = instance.runFullInsertionSort(sortee);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of runOneStepInsertionSort method, of class Sorting.
+     */
+    @Test
+    public void testRunOneStepInsertionSort() {
+        System.out.println("runOneStepInsertionSort");
+        List<Integer> sortee = null;
+        int index = 0;
+        Sorting instance = new Sorting();
+        List<Integer> expResult = null;
+        List<Integer> result = instance.runOneStepInsertionSort(sortee, index);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of insertAt method, of class Sorting.
+     */
+    @Test
+    public void testInsertAt() {
+        System.out.println("insertAt");
+        List<Integer> listToInsert = null;
+        int index = 0;
+        Integer val = null;
+        List<Integer> expResult = null;
+        List<Integer> result = Sorting.insertAt(listToInsert, index, val);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 }
