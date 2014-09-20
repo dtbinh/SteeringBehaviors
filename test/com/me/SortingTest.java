@@ -18,10 +18,10 @@ import static org.junit.Assert.*;
 public class SortingTest {
 
     private static List<Integer> elements;
-    private Sorting sort;
+    private Sortingg sort;
 
     public SortingTest() {
-        sort = new Sorting();
+        sort = new Sortingg();
     }
 
     @Before
@@ -113,7 +113,7 @@ public class SortingTest {
         };
 
         Integer[] elsCorrect = {1, 3, 4, 5, 6, 7, 8};
-        elements = Sorting.runFullMergeSort(elements);
+        elements = Sortingg.runFullMergeSort(elements);
       
 
         assertTrue(twoArraysSame(elsCorrect, elements));

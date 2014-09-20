@@ -1,6 +1,6 @@
 package com.me.steeringbehaviors;
 
-import com.me.Sorting;
+import com.me.Sortingg;
 import edu.moravian.GOL.GameOfLife;
 import edu.moravian.GOL.NoDieGameOfLife;
 import edu.moravian.GOL.VanillaGameOfLife;
