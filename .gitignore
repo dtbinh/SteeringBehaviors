@@ -9,3 +9,6 @@ SteeringBehaviors/.DS_Store
 
 *.png
 *.class
+/nbproject/
+/target/
+/build/
