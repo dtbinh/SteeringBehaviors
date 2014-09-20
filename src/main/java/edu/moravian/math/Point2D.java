@@ -9,7 +9,7 @@ import java.util.Random;
 public class Point2D
   {
 
-    private double x;
+    private double x;d
     private double y;
     public static final double TOL = 1.0E-8;
     public static final Point2D ZERO = new Point2D(0, 0);
