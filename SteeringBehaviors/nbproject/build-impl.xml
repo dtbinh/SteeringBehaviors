@@ -173,7 +173,7 @@ is divided into following sections:
         </condition>
         <path id="endorsed.classpath.path" path="${endorsed.classpath}"/>
         <path id="build.path">
-            <pathelement location="lib/junit-4.10.jar"/>
+            <pathelement location="lib/junit-4.10.jar"></>
         </path>
         <condition else="" property="endorsed.classpath.cmd.line.arg" value="-Xbootclasspath/p:'${toString:endorsed.classpath.path}'">
             <and>
@@ -201,12 +201,12 @@ is divided into following sections:
         <available file="${meta.inf.dir}/persistence.xml" property="has.persistence.xml"/>
         <condition property="junit.available">
             <or>
-                <available classname="org.junit.Test" classpath="${run.test.classpath}"/>
-                <available classname="junit.framework.Test" classpath="${run.test.classpath}"/>
+                <available classname="org.junit.Test" classpath=""/>
+                <available classname="junit.framework.Test" classpath="lib/junit-4.10"/>
             </or>
         </condition>
         <condition property="testng.available">
-            <available classname="org.testng.annotations.Test" classpath="${run.test.classpath}"/>
+            <available classname="org.testng.annotations.Test" classpath="lib/junit-4.10"/>
         </condition>
         <condition property="junit+testng.available">
             <and>
@@ -445,7 +445,7 @@ is divided into following sections:
                         <filename name="@{testincludes}"/>
                     </fileset>
                 </union>
-                <taskdef classname="org.testng.TestNGAntTask" classpath="${run.test.classpath}" name="testng"/>
+                <taskdef classname="org.testng.TestNGAntTask" classpath="lib/junit-4.10" name="testng"/>
                 <testng classfilesetref="test.set" failureProperty="tests.failed" listeners="org.testng.reporters.VerboseReporter" methods="${testng.methods.arg}" mode="${testng.mode}" outputdir="${build.test.results.dir}" suitename="GenerativeArt" testname="TestNG tests" workingDir="${work.dir}">
                     <xmlfileset dir="${build.test.classes.dir}" includes="@{testincludes}"/>
                     <propertyset>
@@ -507,7 +507,7 @@ is divided into following sections:
                 <j2seproject3:test-impl excludes="@{excludes}" includes="@{includes}" testincludes="@{testincludes}" testmethods="@{testmethods}">
                     <customize>
                         <classpath>
-                            <path path="${run.test.classpath}"/>
+                            <path path="lib/junit-4.10"/>
                         </classpath>
                         <jvmarg line="${endorsed.classpath.cmd.line.arg}"/>
                         <jvmarg line="${run.jvmargs}"/>
@@ -639,7 +639,7 @@ is divided into following sections:
                 <j2seproject3:test-debug-impl excludes="@{excludes}" includes="@{includes}" testincludes="@{testincludes}" testmethods="@{testmethods}">
                     <customize>
                         <classpath>
-                            <path path="${run.test.classpath}"/>
+                            <path path="lib/junit-4.10"/>
                         </classpath>
                         <jvmarg line="${endorsed.classpath.cmd.line.arg}"/>
                         <jvmarg line="${run.jvmargs}"/>
@@ -1048,7 +1048,7 @@ is divided into following sections:
     </target>
     <target depends="init,compile-test-single" name="run-test-with-main">
         <fail unless="run.class">Must select one file in the IDE or set run.class</fail>
-        <j2seproject1:java classname="${run.class}" classpath="${run.test.classpath}"/>
+        <j2seproject1:java classname="${run.class}" classpath="lib/junit-4.10"/>
     </target>
     <!--
                 =================
@@ -1135,7 +1135,7 @@ is divided into following sections:
         <fail unless="netbeans.home">This target only works when run from inside the NetBeans IDE.</fail>
         <nbprofiledirect>
             <classpath>
-                <path path="${run.test.classpath}"/>
+                <path path="lib/junit-4.10"/>
             </classpath>
         </nbprofiledirect>
         <junit dir="${profiler.info.dir}" errorproperty="tests.failed" failureproperty="tests.failed" fork="true" jvm="${profiler.info.jvm}" showoutput="true">
@@ -1144,7 +1144,7 @@ is divided into following sections:
             <jvmarg line="${profiler.info.jvmargs}"/>
             <test name="${profile.class}"/>
             <classpath>
-                <path path="${run.test.classpath}"/>
+                <path path="lib/junit-4.10"/>
             </classpath>
             <syspropertyset>
                 <propertyref prefix="test-sys-prop."/>
