@@ -4,6 +4,7 @@
  */
 package edu.moravian.GOL;
 
+import edu.moravian.GOL.GameOfLife;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

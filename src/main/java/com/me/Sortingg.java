@@ -162,7 +162,7 @@ public class Sortingg    implements com.me.steeringbehaviors.RunnableSim {
         return sortee;
     }
 
-    protected List<Integer> runOneStepInsertionSort(List<Integer> sortee, int index) {
+    public List<Integer> runOneStepInsertionSort(List<Integer> sortee, int index) {
         int currMaxIndex = 0;
 
         if (sortee.size() < 1) {
