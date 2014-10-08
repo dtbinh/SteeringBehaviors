@@ -56,7 +56,7 @@ public class Driver extends JFrame implements Simulation, KeyListener
         
         endgameMet = false;
     }
-    
+     
     @Override
     public void update()
     {
