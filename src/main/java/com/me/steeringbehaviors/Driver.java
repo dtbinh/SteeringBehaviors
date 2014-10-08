@@ -4,6 +4,7 @@ import com.me.Sortingg;
 import edu.moravian.GOL.GameOfLife;
 import edu.moravian.GOL.NoDieGameOfLife;
 import edu.moravian.GOL.VanillaGameOfLife;
+import edu.moravian.GOL.WeirdClock;
 import edu.moravian.math.Point2D;
 import edu.moravian.math.Vector2D;
 import java.awt.Color;
@@ -48,7 +49,8 @@ public class Driver extends JFrame implements Simulation, KeyListener
         //EntityManager.getInstance();
         //firstSet.add(new MandelBrot());
         //firstSet.add(new NoDieGameOfLife());
-        firstSet.add(new GameOfLife());
+//        firstSet.add(new GameOfLife());
+        firstSet.add(new WeirdClock());
      //   firstSet.add(new Sorting());
         set = Settings.getInstance();
         
