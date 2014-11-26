@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.java.ducks;
+package com.me.sorting;
 
 import com.me.steeringbehaviors.Settings;
 import com.me.steeringbehaviors.WorldGraphics2D;
