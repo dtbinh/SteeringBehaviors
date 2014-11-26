@@ -36,15 +36,15 @@ public class GameOfLife implements RunnableSim {
 
 //TODO do a better world clone
     public GameOfLife() {
-
+        env = GraphicsEnvironment.getLocalGraphicsEnvironment();
         if (env.isHeadlessInstance()) {
             buff = new BufferedImage(1024, 1024, BufferedImage.TYPE_INT_RGB);
         } else {
             Dimension screenSize = Settings.getInstance().getResolution();
-            buff = config.createCompatibleImage(screenSize.width, screenSize.height, BufferedImage.TYPE_INT_RGB);
-            env = GraphicsEnvironment.getLocalGraphicsEnvironment();
             device = env.getDefaultScreenDevice();
             config = device.getDefaultConfiguration();
+            buff = config.createCompatibleImage(screenSize.width, screenSize.height, BufferedImage.TYPE_INT_RGB);
+
         }
     }
 
@@ -83,23 +83,22 @@ public class GameOfLife implements RunnableSim {
         return nextWorld;
     }
 
-    public static void main(String[] args) {
-        boolean[][] world;
-        double spawnThreshhold = SPAWN_THRESHHOLD;
-        world = new boolean[BOARD_WIDTH][BOARD_HEIGHT];
-        for (int x = 0; x < world.length; x++) {
-            for (int y = 0; y < world[x].length; y++) {
-                if (Math.random() > spawnThreshhold) {
-                    world[x][y] = true;
-                }
-            }
-        }
-
-        outputBoard(world);
-
-        int iters = runGame(world, true);
-    }
-
+//    public static void main(String[] args) {
+//        boolean[][] world;
+//        double spawnThreshhold = SPAWN_THRESHHOLD;
+//        world = new boolean[BOARD_WIDTH][BOARD_HEIGHT];
+//        for (int x = 0; x < world.length; x++) {
+//            for (int y = 0; y < world[x].length; y++) {
+//                if (Math.random() > spawnThreshhold) {
+//                    world[x][y] = true;
+//                }
+//            }
+//        }
+//
+//        outputBoard(world);
+//
+//        int iters = runGame(world, true);
+//    }
     protected static void outputBoard(boolean[][] world) {
         String rep;
         for (int i = 0; i < world.length; i++) {
