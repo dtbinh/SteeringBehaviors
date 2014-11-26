@@ -36,13 +36,14 @@ public class GameOfLife implements RunnableSim {
 
 //TODO do a better world clone
     public GameOfLife() {
-        Dimension screenSize = Settings.getInstance().getResolution();
+    
         env = GraphicsEnvironment.getLocalGraphicsEnvironment();
         device = env.getDefaultScreenDevice();
         config = device.getDefaultConfiguration();
         if (env.isHeadlessInstance()) {
-            buff = new BufferedImage(screenSize.width, screenSize.height, BufferedImage.TYPE_INT_RGB);
+            buff = new BufferedImage(1024, 1024, BufferedImage.TYPE_INT_RGB);
         } else {
+                Dimension screenSize = Settings.getInstance().getResolution();
             buff = config.createCompatibleImage(screenSize.width, screenSize.height, BufferedImage.TYPE_INT_RGB);
         }
     }
