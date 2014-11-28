@@ -1,7 +1,7 @@
 package com.me.utility;
 
 import edu.moravian.math.Vector2D;
-import steeringbehaviors.entities.Ball;
+import com.esteeringbehaviors.entities.Ball;
 
 /**
  *

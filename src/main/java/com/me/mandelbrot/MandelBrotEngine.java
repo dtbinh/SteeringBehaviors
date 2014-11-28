@@ -1,5 +1,5 @@
 
-package mandelbrot;
+package com.me.mandelbrot;
 
 import com.me.steeringbehaviors.Settings;
 

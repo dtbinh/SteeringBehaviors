@@ -1,4 +1,4 @@
-package steeringbehaviors.entities;
+package com.esteeringbehaviors.entities;
 
 import edu.moravian.math.Point2D;
 import edu.moravian.math.Vector2D;

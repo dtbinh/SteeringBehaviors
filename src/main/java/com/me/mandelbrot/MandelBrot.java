@@ -1,4 +1,4 @@
-package mandelbrot;
+package com.me.mandelbrot;
 
 import com.me.utility.ColorTool;
 import com.me.utility.Scaler;

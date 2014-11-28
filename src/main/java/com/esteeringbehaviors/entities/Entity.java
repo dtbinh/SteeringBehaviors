@@ -1,4 +1,4 @@
-package steeringbehaviors.entities;
+package com.esteeringbehaviors.entities;
 
 import com.me.steeringbehaviors.RunnableSim;
 import edu.moravian.math.Point2D;

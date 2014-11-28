@@ -1,5 +1,5 @@
 
-package steeringbehaviors.entities;
+package com.esteeringbehaviors.entities;
 
 import java.awt.Color;
 import com.me.steeringbehaviors.RunnableSim;

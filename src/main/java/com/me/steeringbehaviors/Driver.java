@@ -14,10 +14,10 @@ import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import javax.imageio.IIOException;
 import javax.swing.JFrame;
-import mandelbrot.MandelBrot;
-import steeringbehaviors.entities.Ball;
-import steeringbehaviors.entities.EntityManager;
-import steeringbehaviors.entities.TestBars;
+import com.me.mandelbrot.MandelBrot;
+import com.esteeringbehaviors.entities.Ball;
+import com.esteeringbehaviors.entities.EntityManager;
+import com.esteeringbehaviors.entities.TestBars;
 
 /**
  *
