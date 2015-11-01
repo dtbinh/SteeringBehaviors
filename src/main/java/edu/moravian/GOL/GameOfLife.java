@@ -1,4 +1,4 @@
-package edu.moravian.GOL;
+﻿package edu.moravian.GOL;
 
 import edu.moravian.math.Point2D;
 import java.awt.Color;
@@ -18,7 +18,7 @@ import com.me.steeringbehaviors.WorldGraphics2D;
  * @author James Moore (moore.work@live.com)
  */
 public class GameOfLife implements RunnableSim {
-//TODO refactor board sizes;
+//TODO refactor board sizes;  
 
     private static final int BOARD_WIDTH = 320;
     private static final int BOARD_HEIGHT = 200;
